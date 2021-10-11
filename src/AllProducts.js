@@ -11,7 +11,7 @@ export class AllProducts extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: [],
+            items: null,
             isLoaded: false,
         };
     }
@@ -46,7 +46,7 @@ export class AllProducts extends Component {
             <Container fluid>
                 <Row>
                     {this.state.items.map((item) => (
-                        <Col xs={4}>
+                        <Col data-testid = {item.id} xs={4}>
                             <Link to={{ pathname: `/Product/${item.id}` }}><img src="https://i.pinimg.com/originals/a8/a6/cf/a8a6cf9fa132f759dab1c3c1ece5bf6e.jpg" alt="NOT FOUND" /> </Link>
                             <p>{item.name}</p>
                         </Col>
@@ -59,12 +59,18 @@ export class AllProducts extends Component {
 
     render() {
         if (!this.state.isLoaded) {
-            return <div>Loading..</div>
+            return <div data-testid = "LoadingMessage">Loading..</div>
+        }
+
+        if(this.state.items == null){
+            return <div data-testid = "NoProductsFoundMessage">
+                No publishers found
+            </div>
         }
 
         else {
             return (
-                <div>
+                <div data-testid = "AllProductsDiv">
                     {this.renderData()}
                 </div>
             )
