@@ -13,6 +13,7 @@ export class Home extends Component {
           <li><a href='https://facebook.github.io/react/'>React</a> for client-side code</li>
                 <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
                 <li><Link to="/Products">View All Products</Link></li>
+                <li><Link to="/ProductCreate">Add new product</Link></li>
             </ul>
       </div>
     );

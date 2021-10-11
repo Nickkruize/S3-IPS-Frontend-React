@@ -11,7 +11,6 @@ export class UpdateProduct extends Component {
         super(props);
         this.id = 0;
         this.state = {
-            product: JSON,
             error: Error,
             name: "",
             description: "",
@@ -44,6 +43,7 @@ export class UpdateProduct extends Component {
             .then(response => {
                 try {
                     console.log("Product updated", response.data);
+                    alert("Product updated");
                     this.props.history.push("/Product/" + this.id);
                 }
                 catch(e){
@@ -67,7 +67,6 @@ export class UpdateProduct extends Component {
         api.get('/' + this.id)
             .then(res => {
                 this.setState({ 
-                    product: res.data,
                     name: res.data.name,
                     description: res.data.description,
                     price: res.data.price
@@ -102,7 +101,7 @@ export class UpdateProduct extends Component {
                             data-testid = "nameInput"
                             type="name"
                             name="name"
-                            placeholder={this.state.product.name}
+                            placeholder={this.state.name}
                             value={this.state.name}
                             onChange={this.handleChange}
                             required
@@ -123,7 +122,7 @@ export class UpdateProduct extends Component {
                             data-testid = "DescriptionInput"
                             type="description"
                             name="description"
-                            placeholder={this.state.product.description}
+                            placeholder={this.state.description}
                             value={this.state.description}
                             onChange={this.handleChange}
                             required
@@ -144,7 +143,7 @@ export class UpdateProduct extends Component {
                             data-testid="PriceInput"
                             type="price"
                             name="price"
-                            placeholder={this.state.product.price}
+                            placeholder={this.state.price}
                             value={this.state.price}
                             onChange={this.handleChange}
                             required

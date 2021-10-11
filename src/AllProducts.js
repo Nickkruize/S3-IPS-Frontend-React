@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Link } from 'react-router-dom';
 import { Row, Col, Container } from 'reactstrap';
+import axios from 'axios';
 import './inventory.css';
 
 
@@ -11,48 +12,40 @@ export class AllProducts extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: null,
+            products: null,
             isLoaded: false,
+            error: null,
         };
     }
 
     componentDidMount() {
-        fetch("https://localhost:44337/product")
-            .then(res => res.json())
-            .then(json => {
-                this.setState(
-                    {
-                        isLoaded: true,
-                        items: json,
-                    })
-                }).catch(error =>{
-                    console.error(error);
-                    this.setState({error : error});
-                    this.props.history.push("/NoMatch");
-                })
-    }
-
-    renderTableData() {
-        return this.state.items.map((item) => {
-            const { id, name, description, price } = item
-            return (
-                <tr key={id}>
-                    <td><Link to={{ pathname: `/Product/${item.id}` }}>{name}</Link></td>
-                    <td>{description}</td>
-                    <td>{price}</td>
-                </tr>
-            )
+        const api = axios.create({
+            baseURL: "https://localhost:44337/product"
         })
+
+        api.get()
+        .then(res =>{
+            this.setState(
+                {
+                    isLoaded: true,
+                    products: res.data,
+                })
+        })
+        .catch(error =>{
+            console.log(error);
+            this.setState({error: error});
+            this.props.history.push("/NoMatch");
+        });
     }
 
     renderData() {
         return (
             <Container fluid>
                 <Row>
-                    {this.state.items.map((item) => (
-                        <Col data-testid = {item.id} xs={4}>
-                            <Link to={{ pathname: `/Product/${item.id}` }}><img src="https://i.pinimg.com/originals/a8/a6/cf/a8a6cf9fa132f759dab1c3c1ece5bf6e.jpg" alt="NOT FOUND" /> </Link>
-                            <p>{item.name}</p>
+                    {this.state.products.map((product) => (
+                        <Col data-testid = {product.id} xs={4} style={{ textAlign: "center" }}>
+                            <Link to={{ pathname: `/Product/${product.id}` }}><img src="https://i.pinimg.com/originals/a8/a6/cf/a8a6cf9fa132f759dab1c3c1ece5bf6e.jpg" alt="NOT FOUND" /> </Link>
+                            <p>{product.name}</p>
                         </Col>
                     ))};
                 </Row>
@@ -66,7 +59,7 @@ export class AllProducts extends Component {
             return <div data-testid = "LoadingMessage">Loading..</div>
         }
 
-        if(this.state.items == null){
+        if(this.state.products == null){
             return <div data-testid = "NoProductsFoundMessage">
                 No products found
             </div>

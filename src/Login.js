@@ -17,6 +17,7 @@ export class Login extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.clearPasswordError = this.clearPasswordError.bind(this);
+        this.toRegister = this.toRegister.bind(this);
 
     }
 
@@ -32,7 +33,7 @@ export class Login extends Component {
 
         axios
             .post(
-                "https://localhost:44382/api/users/Login",
+                "https://localhost:44337/api/users/Login",
                 {
                         email: email,
                         password: password
@@ -72,6 +73,10 @@ export class Login extends Component {
                 password:"",
                 loginErrors: null
             })
+    }
+
+    toRegister(){
+        this.props.history.push("/Register");
     }
 
     // clearloginError(){
@@ -134,8 +139,11 @@ export class Login extends Component {
                     <br />
                     <Row>
                         <Col xs={4} />
-                        <Col xs={4} style={{ textAlign: "center" }}>
+                        <Col xs={2} style={{ textAlign: "center" }}>
                             <Button data-testid = "LoginButton" id = "LoginButton" color="primary" size="lg" block type="submit">Login</Button>
+                        </Col>
+                        <Col xs={2} style={{ textAlign: "center" }}>
+                            <Button data-testid = "RegisterButton" id = "RegisterButton" color="primary" size="lg" onClick={this.toRegister}>Register</Button>
                         </Col>
                     </Row>
                     </Form>

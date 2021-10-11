@@ -100,22 +100,3 @@ export class AllPublishers extends Component {
         }
     }
 }
-
-            //return (
-            //    <div>
-            //        <h1 id='title'>All Albums</h1>
-            //        <Table stripid bordered hover>
-            //            <thead>
-            //                <tr>
-            //                    <td>id</td>
-            //                    <td>artistID</td>
-            //                    <td>title</td>
-            //                    <td>released in</td>
-            //                </tr>
-            //            </thead>
-            //            <tbody>
-            //                {this.renderTableData()}
-            //            </tbody>
-            //        </Table>
-            //    </div>
-            //)

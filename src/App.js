@@ -8,6 +8,7 @@ import { NoMatch } from "./NoMatch";
 import { UpdateProduct } from "./UpdateProduct";
 import { CreateProduct } from "./CreateProduct";
 import { Register } from "./Register";
+import {Login} from "./Login";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/ProductCreate" exact component={CreateProduct}/>
       <Route path="/Product/Update/:id" exact component={UpdateProduct}/>
       <Route path="/Register" exact component={Register}/>
+      <Route path="/Login" exact component={Login}/>
 
       <Route path="/NoMatch" component={NoMatch}/>
       <Route component={NoMatch}/>

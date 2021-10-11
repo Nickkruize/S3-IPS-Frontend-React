@@ -40,6 +40,7 @@ export class CreateProduct extends Component {
                 .then(response => {
                     try {
                         console.log("Product created", response.data)
+                        alert("Product created");
                         this.props.history.push("/Product/" + response.data.id);
                     }
                     catch(e){
