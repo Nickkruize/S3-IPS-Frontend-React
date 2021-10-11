@@ -33,7 +33,7 @@ const ProductList =
     });
 
     it("renders the supplied publisherlist correctly", () => {
-      expect(wrapper.state("publishers")).toEqual(null);
+      expect(wrapper.state("items")).toEqual(null);
 
       wrapper.setState({publishers : ProductList})
       wrapper.setState({isLoaded : true})
