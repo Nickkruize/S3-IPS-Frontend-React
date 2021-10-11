@@ -13,7 +13,7 @@ render()
     return(
         <Container>
             <img 
-            src = "https://cdn.mos.cms.futurecdn.net/PuXipAW3AXUzUJ4uYyxPKC-1200-80.jpg" 
+            src = "https://i1.wp.com/saedx.com/blog/wp-content/uploads/2019/01/saedx-blog-featured-70.jpg?fit=1200%2C500&ssl=1" 
             alt = ""
             style = {{width:"100%", height: "100%"}}
             />

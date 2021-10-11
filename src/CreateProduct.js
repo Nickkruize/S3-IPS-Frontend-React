@@ -1,94 +1,60 @@
-import React, { Component } from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
+import React, { Component } from "react";
 import { Row, Form, Col, Container, Button } from 'reactstrap';
-import axios from 'axios';
-import './inventory.css';
+import axios from "axios";
+import 'bootstrap/dist/css/bootstrap.css';
 
-export class UpdateProduct extends Component {
-    static displayName = UpdateProduct.name;
+export class CreateProduct extends Component {
+    static displayName = CreateProduct.name;
 
     constructor(props) {
         super(props);
-        this.id = 0;
+
         this.state = {
-            product: JSON,
-            error: Error,
             name: "",
             description: "",
             price: "",
-        }
+        };
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(event) {
-        this.setState({
-            [event.target.name]: event.target.value
-        });
-    }
-
-    handleSubmit(event) {
-        const { name, description, price } = this.state;
-
-        axios.put(
-            "https://localhost:44337/Product/" + this.id,
-            {
-                    id: this.id,
-                    name: name,
-                    description: description,
-                    price: price
-            },
-            { withCredentials: false}
-        )
-            .then(response => {
-                try {
-                    console.log("Product updated", response.data);
-                    this.props.history.push("/Product/" + this.id);
-                }
-                catch(e){
-                    console.log(e);
-                }
-            })
-            .catch(error => {
-                console.log("error", error);
+        handleChange(event) {
+            this.setState({
+                [event.target.name]: event.target.value
             });
-        event.preventDefault();
-    }
+        }
 
-    componentDidMount() {
+        handleSubmit(event) {
+            const { name, description, price } = this.state;
 
-        this.id = this.props.match.params.id;
+            axios.post(
+                "https://localhost:44337/Product",
+                {
+                        name: name,
+                        description: description,
+                        price: price
+                },
+                { withCredentials: false}
+            )
+                .then(response => {
+                    try {
+                        console.log("Product created", response.data)
+                        this.props.history.push("/Product/" + response.data.id);
+                    }
+                    catch(e){
+                        console.log(e);
+                    }
+                })
+                .catch(error => {
+                    console.log("error", error);
+                });
+            event.preventDefault();
+        }
 
-        const api = axios.create({
-            baseURL: "https://localhost:44337/product"
-        })
-
-        api.get('/' + this.id)
-            .then(res => {
-                console.log(res.data)
-                this.setState({ 
-                    product: res.data,
-                    name: res.data.name,
-                    description: res.data.description,
-                    price: res.data.price
-                 })
-            }).catch(error => {
-                console.error(error);
-                this.setState({ error: error })
-                this.props.history.push("/NoMatch");
-            });
-    }
-
-    render() {
-        return (
-            <Container fluid>
-                <Row>
-                    <Col xs={4} />
-                    <Col xs={4} style={{ textAlign: "center" }}>
-                        <img src="https://fontmeme.com/images/The-Resistance-by-MUSE.jpg" alt="NOT FOUND" />
-                    </Col>
-                </Row>
+        render() {
+            return (
+                <div>
                     <Container data-testid="CreationContainer">
                         <Form onSubmit={this.handleSubmit}>
                             <Row>
@@ -104,7 +70,7 @@ export class UpdateProduct extends Component {
                                         data-testid = "nameInput"
                                         type="name"
                                         name="name"
-                                        placeholder={this.state.product.name}
+                                        placeholder="Name"
                                         value={this.state.name}
                                         onChange={this.handleChange}
                                         required
@@ -125,7 +91,7 @@ export class UpdateProduct extends Component {
                                         data-testid = "DescriptionInput"
                                         type="description"
                                         name="description"
-                                        placeholder={this.state.product.description}
+                                        placeholder="Description"
                                         value={this.state.description}
                                         onChange={this.handleChange}
                                         required
@@ -146,7 +112,7 @@ export class UpdateProduct extends Component {
                                         data-testid="PriceInput"
                                         type="price"
                                         name="price"
-                                        placeholder={this.state.product.price}
+                                        placeholder="Price"
                                         value={this.state.price}
                                         onChange={this.handleChange}
                                         required
@@ -158,12 +124,13 @@ export class UpdateProduct extends Component {
                             <Row>
                                 <Col xs={4} />
                                 <Col xs={4} style={{ textAlign: "center" }}>
-                                    <Button data-testid="CreateButton" color="primary" size="lg" block type="submit">Update</Button>
+                                    <Button data-testid="CreateButton" color="primary" size="lg" block type="submit">Create</Button>
                                 </Col>
                             </Row>
                         </Form>
                     </Container>
-                    </Container>
-        )
-    }
+                </div>
+            );
+        }
 }
+

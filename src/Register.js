@@ -29,7 +29,7 @@ export class Register extends Component {
             const { email, username, password, password_confirmation } = this.state;
 
             axios.post(
-                "https://localhost:44382/api/users/Register",
+                "https://localhost:44367/api/users/Register",
                 {
                         email: email,
                         username: username,

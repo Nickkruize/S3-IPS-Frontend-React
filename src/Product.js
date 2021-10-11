@@ -39,7 +39,7 @@ export class Product extends Component {
     }
 
     toUpdate(){
-        this.props.history.push("/Product/Create/" + this.id);
+        this.props.history.push("/Product/Update/" + this.id);
     }
 
     deleteProduct(){
@@ -66,30 +66,40 @@ export class Product extends Component {
         else{
             return (
                 <Container fluid>
-                    <Row>
-                        <Col xs={4}>
-                            <img src="https://fontmeme.com/images/The-Resistance-by-MUSE.jpg" alt="NOT FOUND" />
-                        </Col>
-                    </Row>
-                    <Row>
-                    <Col>
-                            <h2>{this.state.product.name} {this.state.product.description} for {this.state.product.price}</h2>
+                <Row>
+                    <Col xs={4} />
+                    <Col xs={4} style={{ textAlign: "center" }}>
+                        <img src="https://fontmeme.com/images/The-Resistance-by-MUSE.jpg" alt="NOT FOUND" />
                     </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={4}>
-                        <button onClick={this.deleteProduct}>
-                            Delete Product
+                </Row>
+                <Row>
+                    <Col xs={4} />
+                    <Col xs={4} style={{ textAlign: "center" }}>
+                    <h2>{this.state.product.name}</h2>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs={4} />
+                    <Col xs={4} style={{ textAlign: "center" }}>
+                    <h2>{this.state.product.description}</h2>
+                    <h2>$ {this.state.product.price}</h2>
+                    </Col>
+                </Row>
+                <Row>
+                <Col xs={4} />
+                        <Col xs={2} style={{ textAlign: "center" }}>
+                            <button onClick={this.deleteProduct}>
+                                Delete Product
                             </button> 
-                            </Col>
-                            <Col xs={4}>
-                        <button onClick={this.toUpdate}>
-                            to update
+                        </Col>
+                        <Col xs={2} style={{ textAlign: "center" }}>
+                            <button onClick={this.toUpdate}>
+                                to update
                             </button> 
-                            </Col>
-                    </Row>
-                </Container>
-            )
-        }
+                        </Col>
+                </Row>
+            </Container>
+        )
     }
+}
 }
