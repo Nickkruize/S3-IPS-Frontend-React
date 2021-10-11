@@ -9,6 +9,8 @@ export class Product extends Component {
 
     constructor(props) {
         super(props);
+        this.deleteProduct = this.deleteProduct.bind(this);
+        this.id = 0;
         this.state = {
             product: JSON,
             error: Error
@@ -17,25 +19,39 @@ export class Product extends Component {
 
     componentDidMount() {
 
-        const id = this.props.match.params.id;
+        this.id = this.props.match.params.id;
 
         const api = axios.create({
             baseURL: "https://localhost:44337/product"
         })
 
-        api.get('/' + id,)
+        api.get('/' + this.id)
             .then(res => {
                 console.log(res.data)
                 this.setState({ product: res.data })
             }).catch(error => {
                 console.error(error);
-                console.log(error);
                 this.setState({ error: error })
                 this.props.history.push("/NoMatch");
             });
     }
 
+    deleteProduct(){
+        const api = axios.create({
+            baseURL: "https://localhost:44337/product"
+        })
 
+        api.delete('/' + this.id)
+        .then(res => {
+            console.log(res);
+            console.log("Product deleted");
+            this.props.history.push("/products");
+        }).catch(error =>{
+            console.error(error);
+            this.setState({error : error});
+            this.props.history.push("/NoMatch");
+        })
+    }
 
     render() {
         return (
@@ -49,6 +65,13 @@ export class Product extends Component {
                 <Col>
                         <h2>{this.state.product.name} {this.state.product.description} for {this.state.product.price}</h2>
                 </Col>
+                </Row>
+                <Row>
+                    <Col xs={4}>
+                    <button onClick={this.deleteProduct}>
+                        Delete Product
+                        </button> 
+                        </Col>
                 </Row>
             </Container>
         )
