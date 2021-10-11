@@ -66,7 +66,6 @@ export class UpdateProduct extends Component {
 
         api.get('/' + this.id)
             .then(res => {
-                console.log(res.data)
                 this.setState({ 
                     product: res.data,
                     name: res.data.name,
@@ -82,88 +81,86 @@ export class UpdateProduct extends Component {
 
     render() {
         return (
-            <Container fluid>
+            <Container data-testid="CreationContainer">
                 <Row>
                     <Col xs={4} />
                     <Col xs={4} style={{ textAlign: "center" }}>
                         <img src="https://fontmeme.com/images/The-Resistance-by-MUSE.jpg" alt="NOT FOUND" />
                     </Col>
                 </Row>
-                    <Container data-testid="CreationContainer">
-                        <Form onSubmit={this.handleSubmit}>
-                            <Row>
-                                <Col xs={4} />
-                                <Col xs={4} style={{ textAlign: "center" }}>
-                                    <label data-testid="nameLabel" style={{ width: "100%" }}>name</label>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col xs={4} />
-                                <Col xs={4} style={{ textAlign: "center" }} >
-                                    <input
-                                        data-testid = "nameInput"
-                                        type="name"
-                                        name="name"
-                                        placeholder={this.state.product.name}
-                                        value={this.state.name}
-                                        onChange={this.handleChange}
-                                        required
-                                        style={{ width: "100%" }}
-                                    />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col xs={4} />
-                                <Col xs={4} style={{ textAlign: "center" }}>
-                                    <label data-testid="description" style={{ width: "100%" }}>Description</label>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col xs={4} />
-                                <Col xs={4} style={{ textAlign: "center" }} >
-                                    <input
-                                        data-testid = "DescriptionInput"
-                                        type="description"
-                                        name="description"
-                                        placeholder={this.state.product.description}
-                                        value={this.state.description}
-                                        onChange={this.handleChange}
-                                        required
-                                        style={{ width: "100%" }}
-                                    />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col xs={4} />
-                                <Col xs={4} style={{ textAlign: "center" }}>
-                                    <label data-testid="PriceLabel" style={{ width: "100%" }}>Price</label>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col xs={4} />
-                                <Col xs={4} style={{ textAlign: "center" }} >
-                                    <input
-                                        data-testid="PriceInput"
-                                        type="price"
-                                        name="price"
-                                        placeholder={this.state.product.price}
-                                        value={this.state.price}
-                                        onChange={this.handleChange}
-                                        required
-                                        style={{ width: "100%" }}
-                                    />
-                                </Col>
-                            </Row>
-                            <br />
-                            <Row>
-                                <Col xs={4} />
-                                <Col xs={4} style={{ textAlign: "center" }}>
-                                    <Button data-testid="CreateButton" color="primary" size="lg" block type="submit">Update</Button>
-                                </Col>
-                            </Row>
-                        </Form>
-                    </Container>
-                    </Container>
-        )
+                <Form onSubmit={this.handleSubmit}>
+                    <Row>
+                        <Col xs={4} />
+                        <Col xs={4} style={{ textAlign: "center" }}>
+                            <label data-testid="nameLabel" style={{ width: "100%" }}>name</label>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={4} />
+                        <Col xs={4} style={{ textAlign: "center" }} >
+                            <input
+                            data-testid = "nameInput"
+                            type="name"
+                            name="name"
+                            placeholder={this.state.product.name}
+                            value={this.state.name}
+                            onChange={this.handleChange}
+                            required
+                            style={{ width: "100%" }}
+                            />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={4} />
+                        <Col xs={4} style={{ textAlign: "center" }}>
+                            <label data-testid="description" style={{ width: "100%" }}>Description</label>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={4} />
+                        <Col xs={4} style={{ textAlign: "center" }} >
+                            <input
+                            data-testid = "DescriptionInput"
+                            type="description"
+                            name="description"
+                            placeholder={this.state.product.description}
+                            value={this.state.description}
+                            onChange={this.handleChange}
+                            required
+                            style={{ width: "100%" }}
+                            />
+                        </Col>
+                    </Row>
+                     <Row>
+                        <Col xs={4} />
+                        <Col xs={4} style={{ textAlign: "center" }}>
+                            <label data-testid="PriceLabel" style={{ width: "100%" }}>Price</label>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={4} />
+                        <Col xs={4} style={{ textAlign: "center" }} >
+                            <input
+                            data-testid="PriceInput"
+                            type="price"
+                            name="price"
+                            placeholder={this.state.product.price}
+                            value={this.state.price}
+                            onChange={this.handleChange}
+                            required
+                            style={{ width: "100%" }}
+                            />
+                        </Col>
+                    </Row>
+                    <br />
+                    <Row>
+                        <Col xs={4} />
+                        <Col xs={4} style={{ textAlign: "center" }}>
+                            <Button data-testid="CreateButton" color="primary" size="lg" block type="submit">Update</Button>
+                        </Col>
+                    </Row>
+                </Form>
+            </Container>
+            )
+        }
     }
-}
