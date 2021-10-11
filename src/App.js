@@ -5,6 +5,7 @@ import { Product } from "./Product";
 import { Layout } from "./Layout";
 import {Home} from "./Home";
 import { NoMatch } from "./NoMatch";
+import { UpdateProduct } from "./UpdateProduct";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
 
       <Route path="/Products" exact component={AllProducts}/>
       <Route path="/Product/:id" exact component={Product}/>
+      <Route path="/Product/Create/:id" exact component={UpdateProduct}/>
 
       <Route path="/NoMatch" component={NoMatch}/>
       <Route component={NoMatch}/>
