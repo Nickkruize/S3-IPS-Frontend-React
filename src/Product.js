@@ -10,10 +10,12 @@ export class Product extends Component {
     constructor(props) {
         super(props);
         this.deleteProduct = this.deleteProduct.bind(this);
+        this.toUpdate = this.toUpdate.bind(this);
         this.id = 0;
         this.state = {
             product: JSON,
-            error: Error
+            error: Error,
+            isLoaded: false,
         }
     }
 
@@ -28,12 +30,16 @@ export class Product extends Component {
         api.get('/' + this.id)
             .then(res => {
                 console.log(res.data)
-                this.setState({ product: res.data })
+                this.setState({ product: res.data, isLoaded: true })
             }).catch(error => {
                 console.error(error);
                 this.setState({ error: error })
                 this.props.history.push("/NoMatch");
             });
+    }
+
+    toUpdate(){
+        this.props.history.push("/Product/Create/" + this.id);
     }
 
     deleteProduct(){
@@ -54,26 +60,36 @@ export class Product extends Component {
     }
 
     render() {
-        return (
-            <Container fluid>
-                <Row>
-                    <Col xs={4}>
-                        <img src="https://fontmeme.com/images/The-Resistance-by-MUSE.jpg" alt="NOT FOUND" />
-                    </Col>
-                </Row>
-                <Row>
-                <Col>
-                        <h2>{this.state.product.name} {this.state.product.description} for {this.state.product.price}</h2>
-                </Col>
-                </Row>
-                <Row>
-                    <Col xs={4}>
-                    <button onClick={this.deleteProduct}>
-                        Delete Product
-                        </button> 
+        if (!this.state.isLoaded) {
+            return <div data-testid = "LoadingMessage">Loading..</div>
+        }
+        else{
+            return (
+                <Container fluid>
+                    <Row>
+                        <Col xs={4}>
+                            <img src="https://fontmeme.com/images/The-Resistance-by-MUSE.jpg" alt="NOT FOUND" />
                         </Col>
-                </Row>
-            </Container>
-        )
+                    </Row>
+                    <Row>
+                    <Col>
+                            <h2>{this.state.product.name} {this.state.product.description} for {this.state.product.price}</h2>
+                    </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={4}>
+                        <button onClick={this.deleteProduct}>
+                            Delete Product
+                            </button> 
+                            </Col>
+                            <Col xs={4}>
+                        <button onClick={this.toUpdate}>
+                            to update
+                            </button> 
+                            </Col>
+                    </Row>
+                </Container>
+            )
+        }
     }
 }

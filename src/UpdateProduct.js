@@ -77,7 +77,7 @@ export class UpdateProduct extends Component {
                 <Row>
                     <Col xs={4}>
                     <button onClick={this.updateProduct}>
-                        Add Product
+                        Update Product
                         </button> 
                         </Col>
                 </Row>

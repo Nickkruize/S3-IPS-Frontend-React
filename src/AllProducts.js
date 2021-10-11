@@ -25,7 +25,11 @@ export class AllProducts extends Component {
                         isLoaded: true,
                         items: json,
                     })
-            });
+                }).catch(error =>{
+                    console.error(error);
+                    this.setState({error : error});
+                    this.props.history.push("/NoMatch");
+                })
     }
 
     renderTableData() {
