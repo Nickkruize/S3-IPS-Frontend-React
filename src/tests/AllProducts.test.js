@@ -25,17 +25,17 @@ const ProductList =
     }
 ]
 
-  describe("rendering of all publishers", () => {
+  describe("rendering of all products", () => {
 
     let wrapper;
     beforeEach( () => {
       wrapper = shallow(<AllProducts/>);
     });
 
-    it("renders the supplied publisherlist correctly", () => {
+    it("renders the supplied productlist correctly", () => {
       expect(wrapper.state("items")).toEqual(null);
 
-      wrapper.setState({publishers : ProductList})
+      wrapper.setState({items : ProductList})
       wrapper.setState({isLoaded : true})
 
       expect(wrapper.state("items")).toEqual(ProductList);
@@ -48,14 +48,14 @@ const ProductList =
       expect(wrapper.find('[data-testid=4]').length).toEqual(0);
     });
 
-    it("renders an no publishers found message if no publisherdata is supplied", () =>{
+    it("renders an no products found message if no productdata is supplied", () =>{
         wrapper.setState({isLoaded : true})
 
         expect(wrapper.state("items")).toEqual(null);
         expect(wrapper.state("isLoaded")).toEqual(true);
   
         expect(wrapper.find('[data-testid="NoProductsFoundMessage"]').length).toEqual(1);
-        expect(wrapper.find('[data-testid="NoProductsFoundMessage"]').text()).toEqual("No publishers found");
+        expect(wrapper.find('[data-testid="NoProductsFoundMessage"]').text()).toEqual("No products found");
         expect(wrapper.find('[data-testid="AllProductsDiv"]').length).toEqual(0);
         expect(wrapper.find('[data-testid=1]').length).toEqual(0);
     })

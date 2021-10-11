@@ -64,7 +64,7 @@ export class AllProducts extends Component {
 
         if(this.state.items == null){
             return <div data-testid = "NoProductsFoundMessage">
-                No publishers found
+                No products found
             </div>
         }
 
