@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Row, Col, Container} from 'reactstrap';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import './inventory.css';
 
 export class Product extends Component {
@@ -14,6 +15,7 @@ export class Product extends Component {
         this.id = 0;
         this.state = {
             product: JSON,
+            categories: [],
             error: Error,
             isLoaded: false,
         }
@@ -29,8 +31,8 @@ export class Product extends Component {
 
         api.get('/' + this.id)
             .then(res => {
-                console.log(res.data)
-                this.setState({ product: res.data, isLoaded: true })
+                this.setState({ product: res.data, isLoaded: true, categories: res.data.categories })
+                console.log(this.state.categories);
             }).catch(error => {
                 console.error(error);
                 this.setState({ error: error })
@@ -60,6 +62,31 @@ export class Product extends Component {
         })
     }
 
+    renderTableData() {
+        if (this.state.categories.length > 0) {
+            console.log("rendering cats")
+            return this.state.categories.map((item, index) => {
+                const { id, name} = item
+                return (
+                    <div key={index}>
+                        <div style={{textAlign:"center"}}>
+                        <Link to={{ pathname: `/Category/${id}` }}>{name}</Link>
+                        </div>
+                    </div>
+                )
+            })
+        }
+        else {
+            return null
+        }
+    }
+
+    ifMorethanZeroCategories(){
+        if(this.state.categories.length > 0){
+            return <h2 style={{textAlign:"center"}}> Categories </h2>
+        }
+    }
+
     render() {
         if (!this.state.isLoaded) {
             return <div data-testid = "LoadingMessage">Loading..</div>
@@ -86,6 +113,8 @@ export class Product extends Component {
                     <h2>$ {this.state.product.price}</h2>
                     </Col>
                 </Row>
+                    {this.ifMorethanZeroCategories()}
+                    {this.renderTableData()}
                 <Row>
                 <Col xs={4} />
                         <Col xs={2} style={{ textAlign: "center" }}>

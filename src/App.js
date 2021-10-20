@@ -8,6 +8,8 @@ import { NoMatch } from "./NoMatch";
 import { UpdateProduct } from "./UpdateProduct";
 import { CreateProduct } from "./CreateProduct";
 import { Register } from "./Register";
+import {Category} from "./Category";
+import {AllCategories} from "./AllCategories";
 import {Login} from "./Login";
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
       <Route path="/Product/:id" exact component={Product}/>
       <Route path="/ProductCreate" exact component={CreateProduct}/>
       <Route path="/Product/Update/:id" exact component={UpdateProduct}/>
+      <Route path="/Category/:id" exact component={Category}/>
+      <Route path="/Categories" exact component={AllCategories}/>
       <Route path="/Register" exact component={Register}/>
       <Route path="/Login" exact component={Login}/>
 
