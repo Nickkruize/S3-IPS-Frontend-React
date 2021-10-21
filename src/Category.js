@@ -13,6 +13,7 @@ export class Category extends Component {
         this.state = {
             category: JSON,
             Products: [],
+            isLoaded: false,
             error: Error
         }
     }
@@ -27,7 +28,7 @@ export class Category extends Component {
 
         api.get('/' + id)
             .then(res => {
-                this.setState({ category: res.data })
+                this.setState({ category: res.data, isLoaded: true })
                 this.setState({Products: this.state.category.products})
             }).catch(error => {
                 console.error(error);
@@ -54,8 +55,9 @@ export class Category extends Component {
     }
 
     render() {
-        if (!this.state.category) {
-            return <div/>
+
+        if (!this.state.isLoaded) {
+            return <div data-testid = "LoadingMessage">Loading..</div>
         }
 
         if(this.state.Products.length === 0)

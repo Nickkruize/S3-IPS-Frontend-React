@@ -47,7 +47,7 @@ export class AllCategories extends Component {
                         <Col data-testid = {category.id} xs={2} style={{ textAlign: "center" }}>
                             <Link to={{ pathname: `/Category/${category.id}` }}>{category.name}</Link>
                         </Col>
-                    ))};
+                    ))}
                 </Row>
             </Container>
         )

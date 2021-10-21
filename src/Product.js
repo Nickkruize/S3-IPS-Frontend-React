@@ -56,6 +56,7 @@ export class Product extends Component {
             this.props.history.push("/products");
         }).catch(error =>{
             console.error(error);
+            alert("Product deleted despite error");
             this.setState({error : error});
             this.props.history.push("/products");
         })
