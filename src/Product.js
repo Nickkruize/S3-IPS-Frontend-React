@@ -32,7 +32,6 @@ export class Product extends Component {
         api.get('/' + this.id)
             .then(res => {
                 this.setState({ product: res.data, isLoaded: true, categories: res.data.categories })
-                console.log(this.state.categories);
             }).catch(error => {
                 console.error(error);
                 this.setState({ error: error })
@@ -58,13 +57,12 @@ export class Product extends Component {
         }).catch(error =>{
             console.error(error);
             this.setState({error : error});
-            this.props.history.push("/NoMatch");
+            this.props.history.push("/products");
         })
     }
 
     renderTableData() {
         if (this.state.categories.length > 0) {
-            console.log("rendering cats")
             return this.state.categories.map((item, index) => {
                 const { id, name} = item
                 return (
