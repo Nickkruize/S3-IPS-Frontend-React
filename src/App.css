@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+.maxWidth {
+  width : 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

@@ -14,7 +14,7 @@ import {Login} from "./Login";
 
 function App() {
   return (
-    <Router>
+    <Router >
       <Layout>
       <Switch>
       <Route exact path='/' component={Home} />

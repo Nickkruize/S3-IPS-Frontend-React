@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
+import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './css/navigation.css'
 
@@ -62,7 +62,7 @@ export class NavMenu extends Component {
   render () {
     return (
       <header>
-        <Navbar style={{backgroundColor:"LightBlue"}} className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
+        <Navbar style={{backgroundColor:"LightBlue", width : "100%"}} className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
           <Container>
             <NavbarBrand tag={Link} to="/">My Webshop</NavbarBrand>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
