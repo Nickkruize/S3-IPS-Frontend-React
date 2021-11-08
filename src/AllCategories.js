@@ -32,7 +32,6 @@ export class AllCategories extends Component {
                 })
         })
         .catch(error =>{
-            console.log(error);
             this.setState({error: error});
             this.props.history.push("/NoMatch");
         });
@@ -43,9 +42,9 @@ export class AllCategories extends Component {
             <Container fluid>
                 <Row>
                     <Col xs={3}/>
-                    {this.state.categories.map((category) => (
-                        <Col data-testid = {category.id} xs={2} style={{ textAlign: "center" }}>
-                            <Link to={{ pathname: `/Category/${category.id}` }}>{category.name}</Link>
+                    {this.state.categories.map((category, index) => (
+                        <Col key={index} data-testid = {category.id} xs={2} style={{ textAlign: "center" }}>
+                            <Link data-testid = {`link${category.id}`} to={{ pathname: `/Category/${category.id}` }}>{category.name}</Link>
                         </Col>
                     ))}
                 </Row>
