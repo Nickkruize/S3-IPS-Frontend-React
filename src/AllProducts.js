@@ -32,7 +32,6 @@ export class AllProducts extends Component {
                 })
         })
         .catch(error =>{
-            console.log(error);
             this.setState({error: error});
             this.props.history.push("/NoMatch");
         });
@@ -42,12 +41,12 @@ export class AllProducts extends Component {
         return (
             <Container fluid>
                 <Row>
-                    {this.state.products.map((product) => (
-                        <Col data-testid = {product.id} xs={4} style={{ textAlign: "center" }}>
+                    {this.state.products.map((product, index) => (
+                        <Col key={index} data-testid = {product.id} xs={4} style={{ textAlign: "center" }}>
                             <Link to={{ pathname: `/Product/${product.id}` }}><img src="https://i.pinimg.com/originals/a8/a6/cf/a8a6cf9fa132f759dab1c3c1ece5bf6e.jpg" alt="NOT FOUND" /> </Link>
                             <p>{product.name}</p>
                         </Col>
-                    ))};
+                    ))}
                 </Row>
             </Container>
         )
