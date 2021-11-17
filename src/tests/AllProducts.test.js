@@ -33,12 +33,12 @@ const ProductList =
     });
 
     it("renders the supplied productlist correctly", () => {
-      expect(wrapper.state("items")).toEqual(null);
+      expect(wrapper.state("products")).toEqual(null);
 
-      wrapper.setState({items : ProductList})
+      wrapper.setState({products : ProductList})
       wrapper.setState({isLoaded : true})
 
-      expect(wrapper.state("items")).toEqual(ProductList);
+      expect(wrapper.state("products")).toEqual(ProductList);
       expect(wrapper.state("isLoaded")).toEqual(true);
 
       expect(wrapper.find('[data-testid="AllProductsDiv"]').length).toEqual(1);
@@ -51,7 +51,7 @@ const ProductList =
     it("renders an no products found message if no productdata is supplied", () =>{
         wrapper.setState({isLoaded : true})
 
-        expect(wrapper.state("items")).toEqual(null);
+        expect(wrapper.state("products")).toEqual(null);
         expect(wrapper.state("isLoaded")).toEqual(true);
   
         expect(wrapper.find('[data-testid="NoProductsFoundMessage"]').length).toEqual(1);
@@ -61,7 +61,7 @@ const ProductList =
     })
     
     it("renders an loading message when no data has been entered yet and the api call hasn't completed", () =>{
-        expect(wrapper.state("items")).toEqual(null);
+        expect(wrapper.state("products")).toEqual(null);
         expect(wrapper.state("isLoaded")).toEqual(false);
   
         expect(wrapper.find('[data-testid="LoadingMessage"]').length).toEqual(1);
