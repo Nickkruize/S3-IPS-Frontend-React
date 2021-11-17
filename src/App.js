@@ -12,6 +12,7 @@ import {Category} from "./Category";
 import {AllCategories} from "./AllCategories";
 import {Login} from "./Login";
 
+
 function App() {
   return (
     <Router>
@@ -30,6 +31,7 @@ function App() {
 
       <Route path="/NoMatch" component={NoMatch}/>
       <Route component={NoMatch}/>
+
 
       </Switch>
       </Layout>
