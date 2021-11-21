@@ -28,7 +28,7 @@ const ChatInput = (props) => {
     }
 
     return (
-        <form 
+        <form style={{textAlign:"center"}}
             onSubmit={onSubmit}>
             <label htmlFor="user">User:</label>
             <br />

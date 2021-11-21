@@ -11,6 +11,7 @@ import { Register } from "./Register";
 import {Category} from "./Category";
 import {AllCategories} from "./AllCategories";
 import {Login} from "./Login";
+import {ChatComponent} from "./ChatComponent"
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
       <Route path="/Categories" exact component={AllCategories}/>
       <Route path="/Register" exact component={Register}/>
       <Route path="/Login" exact component={Login}/>
+      <Route path="/Chat" exact component={ChatComponent}/>
 
       <Route path="/NoMatch" component={NoMatch}/>
       <Route component={NoMatch}/>

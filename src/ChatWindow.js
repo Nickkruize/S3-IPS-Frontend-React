@@ -9,7 +9,7 @@ const ChatWindow = (props) => {
             message={m.message}/>);
 
     return(
-        <div>
+        <div style={{textAlign:"center", color:"black"}}>
             {chat}
         </div>
     )
