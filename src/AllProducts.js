@@ -15,12 +15,13 @@ export class AllProducts extends Component {
             products: null,
             isLoaded: false,
             error: null,
+            response: null
         };
     }
 
     componentDidMount() {
         const api = axios.create({
-            baseURL: "https://localhost:44337/product"
+            baseURL: "https://localhost:5001/product"
         })
 
         api.get()
@@ -32,8 +33,17 @@ export class AllProducts extends Component {
                 })
         })
         .catch(error =>{
-            this.setState({error: error});
-            this.props.history.push("/NoMatch");
+            if(error.response){
+                this.setState({response: error.response});
+                console.log(error.response)
+                if(error.response.status === 404){
+                    this.props.history.push("/NoMatch");
+                }
+            }
+            else{
+                this.setState({error: error})
+                console.log(error);
+            }
         });
     }
 
@@ -52,8 +62,25 @@ export class AllProducts extends Component {
         )
     }
 
+    errorhandling(){
+        if(this.state.response != null && this.state.error.response.status === 404){
+            this.props.history.push("/NoMatch");
+        }
+        else{
+            return(
+                <div>{this.state.error.message}</div>
+            )
+        }
+    }
+
 
     render() {
+
+        if(this.state.error != null){
+            return(
+                <div>{this.state.error.message}</div>
+            )
+        }
         if (!this.state.isLoaded) {
             return <div data-testid = "LoadingMessage">Loading..</div>
         }

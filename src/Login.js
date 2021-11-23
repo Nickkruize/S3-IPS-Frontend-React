@@ -33,7 +33,7 @@ export class Login extends Component {
 
         axios
             .post(
-                "https://localhost:44337/api/users/Login",
+                "https://localhost:5001/api/user/Login",
                 {
                         email: email,
                         password: password
@@ -46,7 +46,7 @@ export class Login extends Component {
                     alert('Invalid Login Attempt');
                 }
                 else {
-                    session.set("User", response.data)
+                    session.set("User", response.data);
                     this.props.history.push("/");
                 }
                 })

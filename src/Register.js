@@ -26,15 +26,14 @@ export class Register extends Component {
         }
 
         handleSubmit(event) {
-            const { email, username, password, password_confirmation } = this.state;
+            const { email, username, password } = this.state;
 
             axios.post(
-                "https://localhost:44337/api/users/Register",
+                "https://localhost:5001/api/user",
                 {
                         email: email,
                         username: username,
-                        password: password,
-                        password_confirmation: password_confirmation
+                        password: password
                 },
                 { withCredentials: false}
             )

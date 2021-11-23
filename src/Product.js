@@ -26,7 +26,7 @@ export class Product extends Component {
         this.id = this.props.match.params.id;
 
         const api = axios.create({
-            baseURL: "https://localhost:44337/product"
+            baseURL: "https://localhost:5001/product"
         })
 
         api.get('/' + this.id)
@@ -45,7 +45,7 @@ export class Product extends Component {
 
     deleteProduct(){
         const api = axios.create({
-            baseURL: "https://localhost:44337/product"
+            baseURL: "https://localhost:5001/product"
         })
 
         api.delete('/' + this.id)

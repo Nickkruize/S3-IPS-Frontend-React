@@ -31,7 +31,7 @@ export class UpdateProduct extends Component {
         const { name, description, price } = this.state;
 
         axios.put(
-            "https://localhost:44337/Product/" + this.id,
+            "https://localhost:5001/Product/" + this.id,
             {
                     id: this.id,
                     name: name,
@@ -61,7 +61,7 @@ export class UpdateProduct extends Component {
         this.id = this.props.match.params.id;
 
         const api = axios.create({
-            baseURL: "https://localhost:44337/product"
+            baseURL: "https://localhost:5001/product"
         })
 
         api.get('/' + this.id)
