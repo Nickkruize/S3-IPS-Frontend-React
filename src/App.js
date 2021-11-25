@@ -13,9 +13,17 @@ import {AllCategories} from "./AllCategories";
 import {Login} from "./Login";
 import {ChatComponent} from "./ChatComponent"
 import {TestBearer} from "./TestBearer";
+import useToken from "./useToken";
+import {NavMenu} from "./NavMenu";
 
 
 function App() {
+
+  const{token, setToken} = useToken();
+
+  if(!token){
+    <NavMenu props={setToken}/>
+  }
   return (
     <Router>
       <Layout>
