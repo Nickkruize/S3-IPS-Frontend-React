@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
-import { Container } from 'reactstrap';
 import { NavMenu } from './NavMenu';
+import './index.css';
 
 export class Layout extends Component {
   static displayName = Layout.name;
 
+  componentWillMount() {
+    document.body.style.backgroundColor = "#181818";
+  }
+
   render () {
     return (
-      <div>
+      <>
+        <main>
         <NavMenu />
-        <Container fluid >
-          {this.props.children}
-        </Container>
-      </div>
+        {this.props.children}
+        </main>
+        <footer>
+          privacy blabla
+        </footer>
+        </>
     );
   }
 }

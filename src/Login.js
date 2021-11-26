@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Form, Col, Container, Button } from 'reactstrap';
+import { Row, Form, Col, Button } from 'reactstrap';
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -87,7 +87,7 @@ export class Login extends Component {
 
     render() {
         return (
-            <Container data-testid="LoginContainer">
+            <div>
                 <Row xs={1}>
                     {this.CheckForErrors()}
                 </Row>
@@ -147,7 +147,7 @@ export class Login extends Component {
                         </Col>
                     </Row>
                     </Form>
-            </Container>
+                    </div>
         );
     }
 }

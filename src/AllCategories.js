@@ -41,10 +41,10 @@ export class AllCategories extends Component {
         return (
             <Container fluid>
                 <Row>
-                    <Col xs={3}/>
                     {this.state.categories.map((category, index) => (
                         <Col key={index} data-testid = {category.id} xs={2} style={{ textAlign: "center" }}>
-                            <Link data-testid = {`link${category.id}`} to={{ pathname: `/Category/${category.id}` }}>{category.name}</Link>
+                            <Link data-testid = {`link${category.id}`} to={{ pathname: `/Category/${category.id}` }}><img style={{width : "100%"}} src="https://img.bekiamoda.com/galeria/3000/3619_m.jpg" alt="Not Found"/></Link>
+                            <p>{category.name}</p>
                         </Col>
                     ))}
                 </Row>

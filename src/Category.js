@@ -45,7 +45,7 @@ export class Category extends Component {
                 <Row>
                     {this.state.Products.map((item) => (
                         <Col xs={3} key={item.id}>
-                            <Link to={{ pathname: `/Product/${item.id}` }}><img src="https://th.bing.com/th/id/OIP.c0iIyE2V0os2corDMYbKswHaHg?w=166&h=180&c=7&r=0&o=5&pid=1.7" alt="Not Found"/>  </Link>
+                            <Link to={{ pathname: `/Product/${item.id}` }}><img src={item.imgUrl} alt="Not Found"/>  </Link>
                             <p>{item.name}</p>
                         </Col>
                     ))}

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Form, Col, Container, Button } from 'reactstrap';
+import { Row, Form, Col, Button } from 'reactstrap';
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -56,7 +56,6 @@ export class Register extends Component {
         render() {
             return (
                 <div>
-                    <Container data-testid="RegisterContainer">
                         <Form onSubmit={this.handleSubmit}>
                             <Row>
                                 <Col xs={4} />
@@ -151,7 +150,6 @@ export class Register extends Component {
                             </Row>
 
                         </Form>
-                    </Container>
                 </div>
             );
         }

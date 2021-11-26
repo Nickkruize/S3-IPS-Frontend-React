@@ -42,7 +42,7 @@ const Chat = () => {
                 body: JSON.stringify(chatMessage),
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization' : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Mzc3MDEzMzUsImlzcyI6Ik5pY2tLcnVpemUiLCJhdWQiOiJOaWNrS3J1aXplIn0.hx_1BF90vWvD_DEhgq5bTsjIZ1ZRPv4ibi-jHcUXkkk'
+                    'Authorization' : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Mzc4OTY2NTcsImlzcyI6Ik5pY2tLcnVpemUiLCJhdWQiOiJOaWNrS3J1aXplIn0.Uf-dHtd6LAvWZ7_OAxBY8PWwvn4sTM9zKdoK02o0jkw'
                 }
             });
         }

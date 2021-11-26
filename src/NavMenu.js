@@ -61,7 +61,6 @@ export class NavMenu extends Component {
 
   render () {
     return (
-      <header>
         <Navbar style={{backgroundColor:"LightBlue"}} className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
           <Container>
             <NavbarBrand tag={Link} to="/">My Webshop</NavbarBrand>
@@ -79,7 +78,6 @@ export class NavMenu extends Component {
             </Collapse>
           </Container>
         </Navbar>
-      </header>
     );
   }
 }

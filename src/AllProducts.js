@@ -26,6 +26,7 @@ export class AllProducts extends Component {
 
         api.get()
         .then(res =>{
+            console.log(res.data)
             this.setState(
                 {
                     isLoaded: true,
@@ -53,8 +54,8 @@ export class AllProducts extends Component {
                 <Row>
                     {this.state.products.map((product, index) => (
                         <Col key={index} data-testid = {product.id} xs={4} style={{ textAlign: "center" }}>
-                            <Link to={{ pathname: `/Product/${product.id}` }}><img src="https://i.pinimg.com/originals/a8/a6/cf/a8a6cf9fa132f759dab1c3c1ece5bf6e.jpg" alt="NOT FOUND" /> </Link>
-                            <p>{product.name}</p>
+                            <Link to={{ pathname: `/Product/${product.id}` }}><img style={{width : "100%"}} src={product.imgUrl} alt="Not Found"/> </Link>
+                            <p style={{color:"white"}}>{product.name}</p>
                         </Col>
                     ))}
                 </Row>

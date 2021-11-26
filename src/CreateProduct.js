@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Form, Col, Container, Button } from 'reactstrap';
+import { Row, Form, Col, Button } from 'reactstrap';
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -29,7 +29,7 @@ export class CreateProduct extends Component {
             const { name, description, price } = this.state;
 
             axios.post(
-                "https://localhost:44337/Product",
+                "https://localhost:5001/Product",
                 {
                         name: name,
                         description: description,
@@ -55,8 +55,6 @@ export class CreateProduct extends Component {
 
         render() {
             return (
-                <div>
-                    <Container data-testid="CreationContainer">
                         <Form onSubmit={this.handleSubmit}>
                             <Row>
                                 <Col xs={4} />
@@ -129,8 +127,6 @@ export class CreateProduct extends Component {
                                 </Col>
                             </Row>
                         </Form>
-                    </Container>
-                </div>
             );
         }
 }
