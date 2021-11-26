@@ -37,6 +37,10 @@ export class Category extends Component {
             });
     }
 
+    componentWillUnmount(){
+        console.log("Bye");
+    }
+
 
     renderData() {
         return (

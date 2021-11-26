@@ -42,12 +42,13 @@ const Chat = () => {
                 body: JSON.stringify(chatMessage),
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization' : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Mzc5NDA2ODQsImlzcyI6Ik5pY2tLcnVpemUiLCJhdWQiOiJOaWNrS3J1aXplIn0.wNKREkAHG7XFk6CM4vdkYWYDTPLWJSM5RCvexZL0yvM'
+                    'Authorization' : ''
                 }
             });
         }
         catch(e) {
             console.log('Sending message failed.', e);
+            alert("Couldn't post message" + e)
         }
     }
 

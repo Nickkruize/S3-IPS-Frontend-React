@@ -48,6 +48,21 @@ export class AllProducts extends Component {
         });
     }
 
+    errorhandling(){
+        if(this.state.response != null && this.state.error.response.status === 404){
+            this.props.history.push("/NoMatch");
+        }
+        else{
+            return(
+                <div>{this.state.error.message}</div>
+            )
+        }
+    }
+
+    componentWillUnmount(){
+        console.log("Bye");
+    }
+
     renderData() {
         return (
                 <Row>
@@ -60,18 +75,6 @@ export class AllProducts extends Component {
                 </Row>
         )
     }
-
-    errorhandling(){
-        if(this.state.response != null && this.state.error.response.status === 404){
-            this.props.history.push("/NoMatch");
-        }
-        else{
-            return(
-                <div>{this.state.error.message}</div>
-            )
-        }
-    }
-
 
     render() {
 

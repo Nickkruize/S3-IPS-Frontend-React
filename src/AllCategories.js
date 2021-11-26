@@ -32,9 +32,21 @@ export class AllCategories extends Component {
                 })
         })
         .catch(error =>{
-            this.setState({error: error});
-            this.props.history.push("/NoMatch");
-        });
+            if(error.response){
+                this.setState({response: error.response});
+                console.log(error.response)
+                if(error.response.status === 404){
+                    this.props.history.push("/NoMatch");
+                }
+            }
+            else{
+                this.setState({error: error})
+                console.log(error);
+            }})
+    }
+
+    componentWillUnmount(){
+        console.log("Bye");
     }
 
     renderData() {

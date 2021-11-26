@@ -36,7 +36,11 @@ export class Product extends Component {
                 this.props.history.push("/NoMatch");
             });
     }
-
+    
+    componentWillUnmount(){
+        console.log("Bye");
+    }
+    
     toUpdate(){
         this.props.history.push("/Product/Update/" + this.id);
     }

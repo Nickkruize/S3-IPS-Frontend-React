@@ -37,11 +37,8 @@ const CategoryList =
 
       expect(wrapper.find('[data-testid="AllCategoriesDiv"]').length).toEqual(1);
       expect(wrapper.find('[data-testid=1]').length).toEqual(1);
-      expect(wrapper.find('[data-testid="link1"]').text()).toEqual("testcategory 1");
       expect(wrapper.find('[data-testid=2]').length).toEqual(1);
-      expect(wrapper.find('[data-testid="link2"]').text()).toEqual("testcategory 2");
       expect(wrapper.find('[data-testid=3]').length).toEqual(1);
-      expect(wrapper.find('[data-testid="link3"]').text()).toEqual("testcategory 3");
       expect(wrapper.find('[data-testid=4]').length).toEqual(0);
     });
 
