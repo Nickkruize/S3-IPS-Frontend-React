@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Link } from 'react-router-dom';
-import { Row, Col, Container } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import axios from 'axios';
 import './inventory.css';
 
@@ -39,16 +39,14 @@ export class AllCategories extends Component {
 
     renderData() {
         return (
-            <Container fluid>
                 <Row>
                     {this.state.categories.map((category, index) => (
-                        <Col key={index} data-testid = {category.id} xs={2} style={{ textAlign: "center" }}>
+                        <Col key={index} data-testid = {category.id} xs={3} style={{ textAlign: "center" }}>
                             <Link data-testid = {`link${category.id}`} to={{ pathname: `/Category/${category.id}` }}><img style={{width : "100%"}} src="https://img.bekiamoda.com/galeria/3000/3619_m.jpg" alt="Not Found"/></Link>
                             <p>{category.name}</p>
                         </Col>
                     ))}
                 </Row>
-            </Container>
         )
     }
 
@@ -66,7 +64,7 @@ export class AllCategories extends Component {
 
         else {
             return (
-                <div data-testid = "AllCategoriesDiv">
+                <div data-testid = "AllCategoriesDiv" className="overview-container">
                     {this.renderData()}
                 </div>
             )

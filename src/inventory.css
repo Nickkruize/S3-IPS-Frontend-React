@@ -19,3 +19,31 @@ img{
   height: 200px;
   width: 500px;
 }
+
+.overview-container{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+h2{
+  color: #358ED7;
+  text-align: center;
+}
+
+p{
+  color: white;
+  text-align: center;
+}
+
+label{
+  color: white;
+  text-align: center;
+}
+
+.centered{
+  text-align: center;
+}
+
+input{
+  width: 100%;
+}

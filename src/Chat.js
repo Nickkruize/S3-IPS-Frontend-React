@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { HubConnectionBuilder } from '@microsoft/signalr';
-
+import './AccessDenied.css'
 import ChatWindow from './ChatWindow';
 import ChatInput from './ChatInput';
 
@@ -42,7 +42,7 @@ const Chat = () => {
                 body: JSON.stringify(chatMessage),
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization' : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Mzc4OTY2NTcsImlzcyI6Ik5pY2tLcnVpemUiLCJhdWQiOiJOaWNrS3J1aXplIn0.Uf-dHtd6LAvWZ7_OAxBY8PWwvn4sTM9zKdoK02o0jkw'
+                    'Authorization' : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Mzc5NDA2ODQsImlzcyI6Ik5pY2tLcnVpemUiLCJhdWQiOiJOaWNrS3J1aXplIn0.wNKREkAHG7XFk6CM4vdkYWYDTPLWJSM5RCvexZL0yvM'
                 }
             });
         }

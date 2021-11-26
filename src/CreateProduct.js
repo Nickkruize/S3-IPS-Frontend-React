@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Row, Form, Col, Button } from 'reactstrap';
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.css';
+import './inventory.css'
 
 export class CreateProduct extends Component {
     static displayName = CreateProduct.name;
@@ -58,13 +59,13 @@ export class CreateProduct extends Component {
                         <Form onSubmit={this.handleSubmit}>
                             <Row>
                                 <Col xs={4} />
-                                <Col xs={4} style={{ textAlign: "center" }}>
-                                    <label data-testid="nameLabel" style={{ width: "100%" }}>name</label>
+                                <Col xs={4} className="centered">
+                                    <label data-testid="nameLabel">name</label>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col xs={4} />
-                                <Col xs={4} style={{ textAlign: "center" }} >
+                                <Col xs={4} className="centered" >
                                     <input
                                         data-testid = "nameInput"
                                         type="name"
@@ -73,19 +74,18 @@ export class CreateProduct extends Component {
                                         value={this.state.name}
                                         onChange={this.handleChange}
                                         required
-                                        style={{ width: "100%" }}
                                     />
                                 </Col>
                             </Row>
                             <Row>
                                 <Col xs={4} />
-                                <Col xs={4} style={{ textAlign: "center" }}>
-                                    <label data-testid="description" style={{ width: "100%" }}>Description</label>
+                                <Col xs={4} className="centered">
+                                    <label data-testid="description">Description</label>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col xs={4} />
-                                <Col xs={4} style={{ textAlign: "center" }} >
+                                <Col xs={4} className="centered" >
                                     <input
                                         data-testid = "DescriptionInput"
                                         type="description"
@@ -94,19 +94,18 @@ export class CreateProduct extends Component {
                                         value={this.state.description}
                                         onChange={this.handleChange}
                                         required
-                                        style={{ width: "100%" }}
                                     />
                                 </Col>
                             </Row>
                             <Row>
                                 <Col xs={4} />
-                                <Col xs={4} style={{ textAlign: "center" }}>
-                                    <label data-testid="PriceLabel" style={{ width: "100%" }}>Price</label>
+                                <Col xs={4} className="centered">
+                                    <label data-testid="PriceLabel">Price</label>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col xs={4} />
-                                <Col xs={4} style={{ textAlign: "center" }} >
+                                <Col xs={4} className="centered" >
                                     <input
                                         data-testid="PriceInput"
                                         type="price"
@@ -115,14 +114,13 @@ export class CreateProduct extends Component {
                                         value={this.state.price}
                                         onChange={this.handleChange}
                                         required
-                                        style={{ width: "100%" }}
                                     />
                                 </Col>
                             </Row>
                             <br />
                             <Row>
                                 <Col xs={4} />
-                                <Col xs={4} style={{ textAlign: "center" }}>
+                                <Col xs={4} className="centered">
                                     <Button data-testid="CreateButton" color="primary" size="lg" block type="submit">Create</Button>
                                 </Col>
                             </Row>

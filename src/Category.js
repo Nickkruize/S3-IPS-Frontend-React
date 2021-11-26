@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Row, Col, Container} from 'reactstrap';
+import { Row, Col} from 'reactstrap';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './inventory.css';
@@ -40,17 +40,14 @@ export class Category extends Component {
 
     renderData() {
         return (
-            <Container fluid>
-                <h2 style={{ textAlign: "center" }} key={this.state.category.id}>{this.state.category.name}</h2>
                 <Row>
-                    {this.state.Products.map((item) => (
-                        <Col xs={3} key={item.id}>
-                            <Link to={{ pathname: `/Product/${item.id}` }}><img src={item.imgUrl} alt="Not Found"/>  </Link>
-                            <p>{item.name}</p>
+                    {this.state.Products.map((item, index) => (
+                        <Col id="Productinfo" xs={3} key={index}>
+                            <Link id="producturl" to={{ pathname: `/Product/${item.id}` }}><img id="productImg" src={item.imgUrl} alt="Not Found"/>  </Link>
+                            <p id="productname">{item.name}</p>
                         </Col>
                     ))}
                 </Row>
-            </Container>
         )
     }
 
@@ -64,9 +61,9 @@ export class Category extends Component {
         {
             return(
             <div>
-            <h2 style={{ textAlign: "center" }} key={this.state.category.id}>{this.state.category.name}</h2>
+            <h2 style={{ textAlign: "center", color:"white" }} key={this.state.category.id}>{this.state.category.name}</h2>
             <Row>
-                <div style={{ textAlign: "center" }}>
+                <div style={{ textAlign: "center", color:"white" }}>
                     <p>This category doesn't contain any products</p>
                 </div>
             </Row>
@@ -75,7 +72,8 @@ export class Category extends Component {
         }
 
         return (
-            <div>
+            <div id="category-products-container" className="overview-container">
+                <h2 id="categoryTitle" key={this.state.category.id}>{this.state.category.name}</h2>
                 {this.renderData()}
             </div>
         )

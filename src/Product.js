@@ -96,8 +96,7 @@ export class Product extends Component {
             <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet"></link>
             </head>
 
-<body>
-<main className="container">
+<div className="container">
 
     <div className="left-column">     
       <img className="active" src={this.state.product.imgUrl} alt=""/>
@@ -109,7 +108,7 @@ export class Product extends Component {
         <span>
             <h2>{this.state.product.name}</h2>
             </span>
-        <p>{this.state.product.description}</p>
+        <p style={{color:"white"}}>{this.state.product.description}</p>
       </div>
    
       <div className="product-configuration">
@@ -145,8 +144,7 @@ export class Product extends Component {
         <a href="/#" className="cart-btn">Add to cart</a>
       </div>
     </div>
-  </main>
-</body>
+  </div>
                 {/* <Container fluid>
                 <Row>
                 <Col xs={4} style={{textAlign:'center'}}>

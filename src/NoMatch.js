@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './AccessDenied.css';
-import {Container} from 'reactstrap';
 
 export class NoMatch extends Component {
 
@@ -11,13 +10,13 @@ export class NoMatch extends Component {
 render()
 {
     return(
-        <Container>
+        <div>
             <img 
-            src = "https://i1.wp.com/saedx.com/blog/wp-content/uploads/2019/01/saedx-blog-featured-70.jpg?fit=1200%2C500&ssl=1" 
+            src = "https://kicksdigitalmarketing.com/wp-content/uploads/2019/09/iStock-1142986365.jpg" 
             alt = ""
-            style = {{width:"100%", height: "100%"}}
+            style = {{width:"100%", height: "88vh"}}
             />
-        </Container>
+            </div>
     )
 }
 }

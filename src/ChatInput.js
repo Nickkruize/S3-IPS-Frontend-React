@@ -1,5 +1,5 @@
-
 import React, { useState } from 'react';
+import './AccessDenied.css'
 
 const ChatInput = (props) => {
     const [user, setUser] = useState('');
@@ -28,7 +28,7 @@ const ChatInput = (props) => {
     }
 
     return (
-        <form style={{textAlign:"center"}}
+        <form style={{textAlign:"center", marginTop:"5%"}}
             onSubmit={onSubmit}>
             <label htmlFor="user">User:</label>
             <br />
@@ -36,7 +36,8 @@ const ChatInput = (props) => {
                 id="user" 
                 name="user" 
                 value={user}
-                onChange={onUserUpdate} />
+                onChange={onUserUpdate}
+                style={{width:"30%"}}/>
             <br/>
             <label htmlFor="message">Message:</label>
             <br />
@@ -45,7 +46,8 @@ const ChatInput = (props) => {
                 id="message"
                 name="message" 
                 value={message}
-                onChange={onMessageUpdate} />
+                onChange={onMessageUpdate} 
+                style={{width:"30%"}}/>
             <br/><br/>
             <button>Submit</button>
         </form>

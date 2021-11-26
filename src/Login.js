@@ -31,7 +31,8 @@ export class Login extends Component {
         const { email, password } = this.state;
         var session = new Session();
 
-        axios
+        try{
+            axios
             .post(
                 "https://localhost:5001/api/user/Login",
                 {
@@ -51,18 +52,22 @@ export class Login extends Component {
                 }
                 })
             .catch(error => {
-                this.setState({ loginErrors: error.response.data });
-                console.log(this.state.loginErrors);
+                console.log(error.response)
+                this.setState({ loginErrors: error.response });
             });
         event.preventDefault();
         this.clearPasswordError();
     }
+    catch(e){
+        console.log(e);
+    }
+}
 
     CheckForErrors() {
         if (this.state.loginErrors != null) {
             return (
                 <div>
-                    <h2 style={{ color: 'red', textAlign:"center"}}>{this.state.loginErrors}</h2>
+                    <h2 style={{ color: 'red', textAlign:"center"}}>{this.state.loginErrors.data}</h2>
                 </div>
             )
         }

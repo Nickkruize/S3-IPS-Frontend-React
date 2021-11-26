@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Link } from 'react-router-dom';
-import { Row, Col, Container } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import axios from 'axios';
 import './inventory.css';
 
@@ -50,16 +50,14 @@ export class AllProducts extends Component {
 
     renderData() {
         return (
-            <Container fluid>
                 <Row>
                     {this.state.products.map((product, index) => (
                         <Col key={index} data-testid = {product.id} xs={4} style={{ textAlign: "center" }}>
                             <Link to={{ pathname: `/Product/${product.id}` }}><img style={{width : "100%"}} src={product.imgUrl} alt="Not Found"/> </Link>
-                            <p style={{color:"white"}}>{product.name}</p>
+                            <p>{product.name}</p>
                         </Col>
                     ))}
                 </Row>
-            </Container>
         )
     }
 
@@ -94,7 +92,7 @@ export class AllProducts extends Component {
 
         else {
             return (
-                <div data-testid = "AllProductsDiv">
+                <div data-testid = "AllProductsDiv" className="overview-container">
                     {this.renderData()}
                 </div>
             )
