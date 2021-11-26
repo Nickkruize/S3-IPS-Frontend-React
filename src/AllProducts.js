@@ -48,16 +48,16 @@ export class AllProducts extends Component {
         });
     }
 
-    errorhandling(){
-        if(this.state.response != null && this.state.error.response.status === 404){
-            this.props.history.push("/NoMatch");
-        }
-        else{
-            return(
-                <div>{this.state.error.message}</div>
-            )
-        }
-    }
+    // errorhandling(){
+    //     if(this.state.response != null && this.state.error.response.status === 404){
+    //         this.props.history.push("/NoMatch");
+    //     }
+    //     else{
+    //         return(
+    //             <h2>{this.state.error.message}</h2>
+    //         )
+    //     }
+    // }
 
     componentWillUnmount(){
         console.log("Bye");
@@ -80,11 +80,11 @@ export class AllProducts extends Component {
 
         if(this.state.error != null){
             return(
-                <div>{this.state.error.message}</div>
+                <p>{this.state.error.message}</p>
             )
         }
         if (!this.state.isLoaded) {
-            return <div data-testid = "LoadingMessage">Loading..</div>
+            return <div data-testid = "LoadingMessage"><p>Loading..</p></div>
         }
 
         if(this.state.products == null){

@@ -70,7 +70,7 @@ html, body {
   margin-bottom: 30px;
 }
  
-.color-choose div {
+/* .color-choose div {
   display: inline-block;
 }
  
@@ -106,7 +106,7 @@ html, body {
 .color-choose input[type=("&amp;quot;radio&amp;quot;")]:checked + label span {
   background-repeat: no-repeat;
   background-position: center;
-}
+} */
 
 /* Cable Configuration */
 .cable-choose {
