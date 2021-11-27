@@ -13,21 +13,20 @@ import {AllCategories} from "./AllCategories";
 import {Login} from "./Login";
 import {ChatComponent} from "./ChatComponent"
 import {TestBearer} from "./TestBearer";
-import useToken from "./useToken";
-import {NavMenu} from "./NavMenu";
+import MyContext from './MyContext'
 
 
 function App() {
 
-  const{token, setToken} = useToken();
+  const user = {name : "Azzania", loggedIn : true}
 
-  if(!token){
-    <NavMenu props={setToken}/>
-  }
+
   return (
     <Router>
+      <MyContext.Provider value={{user : user}}>
       <Layout>
       <Switch>
+
       <Route exact path='/' component={Home} />
 
       <Route path="/Products" exact component={AllProducts}/>
@@ -45,6 +44,7 @@ function App() {
       <Route component={NoMatch}/>
       </Switch>
       </Layout>
+      </MyContext.Provider>
     </Router>
   );
 }
