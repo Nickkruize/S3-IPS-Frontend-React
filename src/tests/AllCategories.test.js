@@ -59,6 +59,5 @@ const CategoryList =
         expect(wrapper.state("isLoaded")).toEqual(false);
   
         expect(wrapper.find('[data-testid="LoadingMessage"]').length).toEqual(1);
-        expect(wrapper.find('[data-testid="LoadingMessage"]').text()).toEqual("Loading..");
     })
 });

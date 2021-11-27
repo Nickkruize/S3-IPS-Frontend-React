@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Link } from 'react-router-dom';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Spinner} from 'reactstrap';
 import axios from 'axios';
 import './inventory.css';
 
@@ -23,7 +23,8 @@ export class AllCategories extends Component {
             baseURL: "https://localhost:5001/api/Category"
         })
 
-        api.get()
+        try{
+            api.get()
         .then(res =>{
             this.setState(
                 {
@@ -40,9 +41,13 @@ export class AllCategories extends Component {
                 }
             }
             else{
-                this.setState({error: error})
-                console.log(error);
+                this.setState({error: error, isLoaded: true})
+                console.log(this.state.error);
             }})
+        }
+        catch(e){
+            console.log(e);
+        }
     }
 
     componentWillUnmount(){
@@ -65,11 +70,19 @@ export class AllCategories extends Component {
 
     render() {
         if (!this.state.isLoaded) {
-            return <div data-testid = "LoadingMessage">Loading..</div>
+            return <div data-testid = "LoadingMessage" style={{textAlign:"center", marginTop:"25%"}}>
+                <Spinner animation="border" children={false} style={{color:"green", width:'5rem', height:"5rem"}}/>
+                </div>
+        }
+
+        if (this.state.error != null) {
+            return <div style={{marginTop:"25%"}}>
+                <h2>{this.state.error.message}</h2>
+                </div>
         }
 
         if(this.state.categories == null){
-            return <div data-testid = "NoCategoriesFoundMessage">
+            return <div data-testid = "NoCategoriesFoundMessage" style={{marginTop:"25%"}}>
                 No products found
             </div>
         }
