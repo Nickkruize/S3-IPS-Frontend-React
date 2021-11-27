@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React from 'react'
 import './App.css';
 import { AllProducts } from './AllProducts';
 import { Product } from "./Product";
@@ -13,17 +14,24 @@ import {AllCategories} from "./AllCategories";
 import {Login} from "./Login";
 import {ChatComponent} from "./ChatComponent"
 import {TestBearer} from "./TestBearer";
-import MyContext from './MyContext'
+import { MyContext } from "./MyContext";
 
 
-function App() {
+export default class App extends React.Component{
 
-  const user = {name : "Azzania", loggedIn : true}
+  setUser = (user) => {
+    this.setState({user});
+  }
 
+  state = {
+    user : null,
+    setUser : this.setUser,
+  }
 
+  render(){
   return (
+    <MyContext.Provider value={this.state}>
     <Router>
-      <MyContext.Provider value={{user : user}}>
       <Layout>
       <Switch>
 
@@ -44,9 +52,8 @@ function App() {
       <Route component={NoMatch}/>
       </Switch>
       </Layout>
-      </MyContext.Provider>
     </Router>
+    </MyContext.Provider>
   );
 }
-
-export default App;
+}

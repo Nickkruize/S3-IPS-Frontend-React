@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import { Row, Form, Col, Button } from 'reactstrap';
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.css';
+import { MyContext } from "./MyContext";
 
 
 export class Login extends Component {
+    static contextType = MyContext
+
     constructor(props) {
         super(props);
 
@@ -90,9 +93,20 @@ export class Login extends Component {
     //     })
     // }
 
+    getUserName(){
+        if (this.context.user != null) {
+            const user = this.context.user;
+            console.log(user)
+            return(
+                <p>{user.name}</p>
+            )
+        }
+    }
+
     render() {
         return (
             <div>
+                {this.getUserName()}
                 <Row xs={1}>
                     {this.CheckForErrors()}
                 </Row>

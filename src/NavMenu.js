@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './css/navigation.css'
+import { MyContext } from './MyContext';
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
+  static contextType = MyContext
 
   constructor (props) {
     super(props);

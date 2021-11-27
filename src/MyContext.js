@@ -1,6 +1,5 @@
 import React from 'react'
 
-const MyContext = React.createContext({user : null})
+const defaultVal = {user: {}}
 
-
-export default MyContext
+export const MyContext = React.createContext(defaultVal)
