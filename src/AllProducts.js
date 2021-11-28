@@ -21,7 +21,7 @@ export class AllProducts extends Component {
 
     componentDidMount() {
         const api = axios.create({
-            baseURL: "https://localhost:5001/product"
+            baseURL: "https://192.168.178.115:5001/product"
         })
 
         api.get()

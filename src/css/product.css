@@ -186,7 +186,7 @@ html, body {
 }
 
 /* Responsive */
-@media (max-width: 940px) {
+@media (max-width: 1080px) {
   .container {
     flex-direction: column;
     margin-top: 60px;

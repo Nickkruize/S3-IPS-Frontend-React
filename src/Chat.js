@@ -12,7 +12,7 @@ const Chat = () => {
 
     useEffect(() => {
         const connection = new HubConnectionBuilder()
-            .withUrl('https://localhost:5001/hubs/chat')
+            .withUrl('https://192.168.178.115:5001/hubs/chat')
             .withAutomaticReconnect()
             .build();
 
@@ -37,12 +37,12 @@ const Chat = () => {
         };
 
         try {
-            await  fetch('https://localhost:5001/chat/messages', { 
+            await  fetch('https://192.168.178.115:5001/chat/messages', { 
                 method: 'POST', 
                 body: JSON.stringify(chatMessage),
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization' : ''
+                    'Authorization' : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzgwMjQ1MTUsImlzcyI6Ik5pY2tLcnVpemUiLCJhdWQiOiJOaWNrS3J1aXplIn0.MfJw6GFtdKdHzhHVgxe7zuPI-vKrnb3JD4q9bINlXC8'
                 }
             });
         }

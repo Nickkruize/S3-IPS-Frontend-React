@@ -23,7 +23,7 @@ export class Category extends Component {
         const id = this.props.match.params.id;
 
         const api = axios.create({
-            baseURL: "https://localhost:5001/api/Category"
+            baseURL: "https://192.168.178.115:5001/api/Category"
         })
 
         api.get('/' + id)

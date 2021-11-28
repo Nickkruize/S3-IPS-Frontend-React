@@ -21,10 +21,6 @@ export class Home extends Component {
     this._initProfile();
   }
 
-  _updateUser(){
-    console.log(this.context)
-  }
-
   _initProfile(){
   const context = this.context;
 

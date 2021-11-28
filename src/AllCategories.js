@@ -20,7 +20,7 @@ export class AllCategories extends Component {
 
     componentDidMount() {
         const api = axios.create({
-            baseURL: "https://localhost:5001/api/Category"
+            baseURL: "https://192.168.178.115:5001/api/Category"
         })
 
         try{
@@ -35,17 +35,16 @@ export class AllCategories extends Component {
         .catch(error =>{
             if(error.response){
                 this.setState({response: error.response});
-                console.log(error.response)
                 if(error.response.status === 404){
                     this.props.history.push("/NoMatch");
                 }
             }
             else{
                 this.setState({error: error, isLoaded: true})
-                console.log(this.state.error);
             }})
         }
         catch(e){
+            this.setState({error: e, isLoaded: true})
             console.log(e);
         }
     }
@@ -59,7 +58,7 @@ export class AllCategories extends Component {
                 <Row>
                     {this.state.categories.map((category, index) => (
                         <Col key={index} data-testid = {category.id} xs={3} style={{ textAlign: "center" }}>
-                            <Link data-testid = {`link${category.id}`} to={{ pathname: `/Category/${category.id}` }}><img style={{width : "100%"}} src="https://img.bekiamoda.com/galeria/3000/3619_m.jpg" alt="Not Found"/></Link>
+                            <Link data-testid = {`link${category.id}`} to={{ pathname: `/Category/${category.id}` }}><img style={{width : "100%"}} src="https://img.static-rmg.be/a/view/q75/w1092/h615/2136101/emma-watson-jpg.jpg" alt="Not Found"/></Link>
                             <p>{category.name}</p>
                         </Col>
                     ))}
