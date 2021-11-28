@@ -21,7 +21,7 @@ export class AllProducts extends Component {
 
     componentDidMount() {
         const api = axios.create({
-            baseURL: "https://192.168.178.115:5001/product"
+            baseURL: "https://localhost:5001/product"
         })
 
         api.get()
@@ -67,7 +67,7 @@ export class AllProducts extends Component {
         return (
                 <Row>
                     {this.state.products.map((product, index) => (
-                        <Col key={index} data-testid = {product.id} xs={4} style={{ textAlign: "center" }}>
+                        <Col key={index} data-testid = {product.id} xs={3} style={{ textAlign: "center" }}>
                             <Link to={{ pathname: `/Product/${product.id}` }}><img style={{width : "100%"}} src={product.imgUrl} alt="Not Found"/> </Link>
                             <p>{product.name}</p>
                         </Col>

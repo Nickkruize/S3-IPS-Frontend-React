@@ -23,7 +23,7 @@ export class Category extends Component {
         const id = this.props.match.params.id;
 
         const api = axios.create({
-            baseURL: "https://192.168.178.115:5001/api/Category"
+            baseURL: "https://localhost:5001/api/Category"
         })
 
         api.get('/' + id)
@@ -64,20 +64,16 @@ export class Category extends Component {
         if(this.state.Products.length === 0)
         {
             return(
-            <div>
-            <h2 style={{ textAlign: "center", color:"white" }} key={this.state.category.id}>{this.state.category.name}</h2>
-            <Row>
-                <div style={{ textAlign: "center", color:"white" }}>
-                    <p>This category doesn't contain any products</p>
-                </div>
-            </Row>
+            <div style={{ textAlign: "center", marginTop:"20%"}}>
+            <h2 key={this.state.category.id}>{this.state.category.name}</h2>
+                <h2>There are no products for this categorie</h2>
             </div>
             )
         }
 
         return (
             <div id="category-products-container" className="overview-container">
-                <h2 id="categoryTitle" key={this.state.category.id}>{this.state.category.name}</h2>
+                <h2 id="categoryTitle" key={this.state.category.id} style={{marginBottom:"25px", marginTop:"25px"}}>{this.state.category.name}</h2>
                 {this.renderData()}
             </div>
         )

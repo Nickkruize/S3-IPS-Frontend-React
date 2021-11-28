@@ -20,7 +20,7 @@ export class AllCategories extends Component {
 
     componentDidMount() {
         const api = axios.create({
-            baseURL: "https://192.168.178.115:5001/api/Category"
+            baseURL: "https://localhost:5001/api/Category"
         })
 
         try{
@@ -58,7 +58,7 @@ export class AllCategories extends Component {
                 <Row>
                     {this.state.categories.map((category, index) => (
                         <Col key={index} data-testid = {category.id} xs={3} style={{ textAlign: "center" }}>
-                            <Link data-testid = {`link${category.id}`} to={{ pathname: `/Category/${category.id}` }}><img style={{width : "100%"}} src="https://img.static-rmg.be/a/view/q75/w1092/h615/2136101/emma-watson-jpg.jpg" alt="Not Found"/></Link>
+                            <Link data-testid = {`link${category.id}`} to={{ pathname: `/Category/${category.id}` }}><img style={{width : "100%"}} src={category.imgUrl} alt="Not Found"/></Link>
                             <p>{category.name}</p>
                         </Col>
                     ))}
@@ -82,7 +82,7 @@ export class AllCategories extends Component {
 
         if(this.state.categories == null){
             return <div data-testid = "NoCategoriesFoundMessage" style={{marginTop:"25%"}}>
-                No products found
+                <h2 style={{marginTop:"25%"}}>No categories found</h2>
             </div>
         }
 

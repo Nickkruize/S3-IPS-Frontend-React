@@ -6,13 +6,14 @@ import ChatInput from './ChatInput';
 
 const Chat = () => {
     const [ chat, setChat ] = useState([]);
+    const [errors, setErrors] = useState([])
     const latestChat = useRef(null);
 
     latestChat.current = chat;
 
     useEffect(() => {
         const connection = new HubConnectionBuilder()
-            .withUrl('https://192.168.178.115:5001/hubs/chat')
+            .withUrl('https://localhost:5001/hubs/chat')
             .withAutomaticReconnect()
             .build();
 
@@ -37,14 +38,20 @@ const Chat = () => {
         };
 
         try {
-            await  fetch('https://192.168.178.115:5001/chat/messages', { 
+            await  fetch('https://localhost:5001/chat/messages', { 
                 method: 'POST', 
                 body: JSON.stringify(chatMessage),
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization' : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzgwMjQ1MTUsImlzcyI6Ik5pY2tLcnVpemUiLCJhdWQiOiJOaWNrS3J1aXplIn0.MfJw6GFtdKdHzhHVgxe7zuPI-vKrnb3JD4q9bINlXC8'
+                    'Authorization' : 'Bearer ' + sessionStorage.getItem("Token")
                 }
-            });
+            })
+            .then(response =>{
+                setErrors(response)
+                if (response.status === 401) {
+                    alert(errors.status + " Unauthorized, must be logged in to use this service")
+                }
+            })
         }
         catch(e) {
             console.log('Sending message failed.', e);

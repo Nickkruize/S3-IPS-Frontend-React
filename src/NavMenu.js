@@ -27,30 +27,34 @@ export class NavMenu extends Component {
     }
 
     Logout() {
-        if (sessionStorage.getItem("User") != null) {
-            sessionStorage.removeItem("User");
+      const context = this.context;
+        if (context.user != null) {
+            sessionStorage.removeItem("Token");
+            context.setUser(null);
             this.setState({ User: null });
         }
     }
 
     componentDidMount() {
-        var session = new Session();
-        if (session.get("User") != null) {
+      const context = this.context;
+        if (context.user != null) {
             console.log(this.state.User);
-            this.setState({ User: session.get("User") });
+            this.setState({ User: context.user});
         }
     }
 
     CurrentUser() {
         if (this.state.User != null) {
             return (
+              <MyContext.Consumer>
                 <NavItem>
-                    <NavLink className="text-dark" to="/">{this.state.User.username}
+                    <NavLink className="text-dark" to="/">{this.state.User}
                         <button button tag={Link} className="text-dark" onClick={this.Logout}>Logout</button>
                     </NavLink>
                 </NavItem>
+                </MyContext.Consumer>
                 )
-        }
+         }
         else {
             return (
                 <NavItem >
@@ -70,32 +74,21 @@ export class NavMenu extends Component {
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
               <ul className="navbar-nav flex-grow">
               <NavItem>
+                  <NavLink tag={Link} className="text-dark" to="/Products">Products</NavLink>
+                </NavItem> 
+              <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/Categories">Categories</NavLink>
                 </NavItem> 
                 <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
-                </NavItem>           
+                </NavItem>
+                <NavItem>        
                 {this.CurrentUser()}
+                </NavItem>
               </ul>
-            </Collapse>
+              </Collapse>
           </Container>
         </Navbar>
     );
   }
-}
-
-class Session extends Map {
-    set(id, value) {
-        if (typeof value === 'object') value = JSON.stringify(value);
-        sessionStorage.setItem(id, value);
-    }
-
-    get(id) {
-        const value = sessionStorage.getItem(id);
-        try {
-            return JSON.parse(value);
-        } catch (e) {
-            return value;
-        }
-    }
 }

@@ -81,6 +81,10 @@ export class Product extends Component {
         }
     }
 
+    notYetImplemented(){
+        return alert("not yet implemented")
+    }
+
     ifMorethanZeroCategories(){
         if(this.state.categories.length > 0){
             return <h2 style={{textAlign:"center"}}> Categories </h2>
@@ -117,26 +121,6 @@ export class Product extends Component {
    
       <div className="product-configuration">
    
-        {/* <div className="product-color">
-          <span>Color</span>
-   
-          <div className="color-choose">
-            <div>
-              <input data-image="red" type="radio" id="red" name="color" value="red" checked/>
-              <label for="red"><span></span></label>
-            </div>
-            <div>
-              <input data-image="blue" type="radio" id="blue" name="color" value="blue"/>
-              <label for="blue"><span></span></label>
-            </div>
-            <div>
-              <input data-image="black" type="radio" id="black" name="color" value="black"/>
-              <label for="black"><span></span></label>
-            </div>
-          </div>
-   
-        </div> */}
-   
         <div className="cable-config">
           <span>Categories</span>
           {this.renderCategoryButtons()}
@@ -145,41 +129,10 @@ export class Product extends Component {
 
       <div className="product-price"> 
         <span>€{this.state.product.price}</span>
-        <a href="/#" className="cart-btn">Add to cart</a>
+        <button className="cart-btn" onClick={this.notYetImplemented}>Add to cart</button>
       </div>
     </div>
   </div>
-                {/* <Container fluid>
-                <Row>
-                <Col xs={4} style={{textAlign:'center'}}>
-                    <img src={this.state.product.imgUrl} alt="NOT FOUND" style={{maxHeight:"40vh", maxWidth:"100%"}} />
-                </Col>
-                <Col style={{ textAlign: "left" }}>
-                    <h2>{this.state.product.name}</h2>
-                    <h2>{this.state.product.description}</h2>
-                    <h2>$ {this.state.product.price}</h2>
-                </Col>
-                </Row>
-                <Row>
-                    <Col xs={4} style={{ textAlign: "center" }}>
-                    {this.ifMorethanZeroCategories()}
-                    {this.renderTableData()}
-                    </Col>
-                </Row>
-                <Row>
-                <Col xs={4} />
-                        <Col xs={2} style={{ textAlign: "center" }}>
-                            <button onClick={this.deleteProduct}>
-                                Delete Product
-                            </button> 
-                        </Col>
-                        <Col xs={2} style={{ textAlign: "center" }}>
-                            <button onClick={this.toUpdate}>
-                                to update
-                            </button> 
-                        </Col>
-                </Row>
-            </Container> */}
         </html>
         )
     }

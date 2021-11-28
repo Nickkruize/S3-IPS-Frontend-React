@@ -3,6 +3,7 @@ import { Row, Form, Col, Button } from 'reactstrap';
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.css';
 import { MyContext } from "./MyContext";
+import {decodeToken} from 'react-jwt';
 
 
 export class Login extends Component {
@@ -24,6 +25,14 @@ export class Login extends Component {
 
     }
 
+
+    componentDidMount(){
+        const context = this.context;
+        if(context.user != null){
+            alert("Already logged in")
+            this.props.history.push("/")
+        }
+    }
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
@@ -32,12 +41,12 @@ export class Login extends Component {
 
     handleSubmit(event) {
         const { email, password } = this.state;
-        var session = new Session();
-
+        const context = this.context;
+ 
         try{
             axios
             .post(
-                "https://192.168.178.115:5001/api/user/Login",
+                "https://localhost:5001/api/AuthManagement/Login",
                 {
                         email: email,
                         password: password
@@ -45,18 +54,17 @@ export class Login extends Component {
                 { withCredentials: false }
             )
             .then(response => {
-                console.log(response);
-                if (response.status === 'Invalid') {
-                    alert('Invalid Login Attempt');
-                }
-                else {
-                    session.set("User", response.data);
+                console.log(response.data);
+                if (response.data.succes) {
+                    alert("Logged in succesfully");
+                    sessionStorage.setItem("Token", response.data.token);
                     this.props.history.push("/");
+                    context.setUser(this.DecodeToken(response.data.token))                  
                 }
                 })
             .catch(error => {
-                console.log(error.response)
-                this.setState({ loginErrors: error.response });
+                console.log(error.response.data.errors)
+                this.setState({ loginErrors: error.response.data.errors});
             });
         event.preventDefault();
         this.clearPasswordError();
@@ -66,15 +74,21 @@ export class Login extends Component {
     }
 }
 
+    DecodeToken(token){
+        const myDecodedToken = decodeToken(token);
+        const username = myDecodedToken.unique_name;
+        return username;
+    }
+
     CheckForErrors() {
         if (this.state.loginErrors != null) {
             return (
                 <div>
-                    <h2 style={{ color: 'red', textAlign:"center"}}>{this.state.loginErrors.data}</h2>
+                    {this.state.loginErrors.map((error, index) =>(
+                    <h2 key={index} style={{ color: 'red', textAlign:"center"}}>{error}</h2>
+                    ))}
                 </div>
-            )
-        }
-    }
+            )}}
 
     clearPasswordError(){
             this.setState({
@@ -87,18 +101,12 @@ export class Login extends Component {
         this.props.history.push("/Register");
     }
 
-    // clearloginError(){
-    //     this.setState({
-    //         loginErrors: null
-    //     })
-    // }
-
     getUserName(){
         if (this.context.user != null) {
             const user = this.context.user;
             console.log(user)
             return(
-                <p>{user.name}</p>
+                <p>{user}</p>
             )
         }
     }
@@ -168,21 +176,5 @@ export class Login extends Component {
                     </Form>
                     </div>
         );
-    }
-}
-
-class Session extends Map {
-    set(id, value) {
-        if (typeof value === 'object') value = JSON.stringify(value);
-        sessionStorage.setItem(id, value);
-    }
-
-    get(id) {
-        const value = sessionStorage.getItem(id);
-        try {
-            return JSON.parse(value);
-        } catch (e) {
-            return value;
-        }
     }
 }
