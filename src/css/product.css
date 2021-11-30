@@ -7,7 +7,7 @@ html, body {
 }
  
 .container {
-  max-width: 1200px;
+  max-width: 90%;
   margin: 0 auto;
   padding: 15px;
   display: flex;
@@ -28,10 +28,10 @@ html, body {
 /* Left Column */
 .left-column img {
   width: 100%;
-  max-height: 100vh;
+  max-height: 80vh;
   position: absolute;
   left: 0;
-  top: 0px;
+  top: -25px;
   opacity: 0;
   transition: all 0.3s ease;
 }
@@ -69,44 +69,6 @@ html, body {
 .product-color {
   margin-bottom: 30px;
 }
- 
-/* .color-choose div {
-  display: inline-block;
-}
- 
-.color-choose input[type=("&amp;quot;radio&amp;quot;")] {
-  display: none;
-}
- 
-.color-choose input[type=("&amp;quot;radio&amp;quot;")] + label span {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  margin: -1px 4px 0 0;
-  vertical-align: middle;
-  cursor: pointer;
-  border-radius: 50%;
-}
- 
-.color-choose input[type=("&amp;quot;radio&amp;quot;")] + label span {
-  border: 2px solid #FFFFFF;
-  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.33);
-}
- 
-.color-choose input[type=("&amp;quot;radio&amp;quot;")]#red + label span {
-  background-color: #C91524;
-}
-.color-choose input[type=("&amp;quot;radio&amp;quot;")]#blue + label span {
-  background-color: #314780;
-}
-.color-choose input[type=("&amp;quot;radio&amp;quot;")]#black + label span {
-  background-color: #323232;
-}
- 
-.color-choose input[type=("&amp;quot;radio&amp;quot;")]:checked + label span {
-  background-repeat: no-repeat;
-  background-position: center;
-} */
 
 /* Cable Configuration */
 .cable-choose {

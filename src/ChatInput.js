@@ -13,7 +13,7 @@ const ChatInput = (props) => {
 
         if (isUserProvided && isMessageProvided) {
             props.sendMessage(user, message);
-        } 
+        }
         else {
             alert('Please insert an user and a message.');
         }
@@ -28,27 +28,27 @@ const ChatInput = (props) => {
     }
 
     return (
-        <form style={{textAlign:"center", marginTop:"5%"}}
+        <form style={{ textAlign: "center", marginTop: "5%" }}
             onSubmit={onSubmit}>
             <label htmlFor="user">User:</label>
             <br />
-            <input 
-                id="user" 
-                name="user" 
+            <input
+                id="user"
+                name="user"
                 value={user}
                 onChange={onUserUpdate}
-                style={{width:"30%"}}/>
-            <br/>
+                style={{ width: "30%" }} />
+            <br />
             <label htmlFor="message">Message:</label>
             <br />
-            <input 
+            <input
                 type="text"
                 id="message"
-                name="message" 
+                name="message"
                 value={message}
-                onChange={onMessageUpdate} 
-                style={{width:"30%"}}/>
-            <br/><br/>
+                onChange={onMessageUpdate}
+                style={{ width: "30%" }} />
+            <br /><br />
             <button>Submit</button>
         </form>
     )

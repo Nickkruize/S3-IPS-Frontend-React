@@ -33,12 +33,12 @@ export class UpdateProduct extends Component {
         axios.put(
             "https://localhost:5001/Product/" + this.id,
             {
-                    id: this.id,
-                    name: name,
-                    description: description,
-                    price: price
+                id: this.id,
+                name: name,
+                description: description,
+                price: price
             },
-            { withCredentials: false}
+            { withCredentials: false }
         )
             .then(response => {
                 try {
@@ -46,7 +46,7 @@ export class UpdateProduct extends Component {
                     alert("Product updated");
                     this.props.history.push("/Product/" + this.id);
                 }
-                catch(e){
+                catch (e) {
                     console.log(e);
                 }
             })
@@ -66,11 +66,11 @@ export class UpdateProduct extends Component {
 
         api.get('/' + this.id)
             .then(res => {
-                this.setState({ 
+                this.setState({
                     name: res.data.name,
                     description: res.data.description,
                     price: res.data.price
-                 })
+                })
             }).catch(error => {
                 console.error(error);
                 this.setState({ error: error })
@@ -98,14 +98,14 @@ export class UpdateProduct extends Component {
                         <Col xs={4} />
                         <Col xs={4} style={{ textAlign: "center" }} >
                             <input
-                            data-testid = "nameInput"
-                            type="name"
-                            name="name"
-                            placeholder={this.state.name}
-                            value={this.state.name}
-                            onChange={this.handleChange}
-                            required
-                            style={{ width: "100%" }}
+                                data-testid="nameInput"
+                                type="name"
+                                name="name"
+                                placeholder={this.state.name}
+                                value={this.state.name}
+                                onChange={this.handleChange}
+                                required
+                                style={{ width: "100%" }}
                             />
                         </Col>
                     </Row>
@@ -119,18 +119,18 @@ export class UpdateProduct extends Component {
                         <Col xs={4} />
                         <Col xs={4} style={{ textAlign: "center" }} >
                             <input
-                            data-testid = "DescriptionInput"
-                            type="description"
-                            name="description"
-                            placeholder={this.state.description}
-                            value={this.state.description}
-                            onChange={this.handleChange}
-                            required
-                            style={{ width: "100%" }}
+                                data-testid="DescriptionInput"
+                                type="description"
+                                name="description"
+                                placeholder={this.state.description}
+                                value={this.state.description}
+                                onChange={this.handleChange}
+                                required
+                                style={{ width: "100%" }}
                             />
                         </Col>
                     </Row>
-                     <Row>
+                    <Row>
                         <Col xs={4} />
                         <Col xs={4} style={{ textAlign: "center" }}>
                             <label data-testid="PriceLabel" style={{ width: "100%" }}>Price</label>
@@ -140,14 +140,14 @@ export class UpdateProduct extends Component {
                         <Col xs={4} />
                         <Col xs={4} style={{ textAlign: "center" }} >
                             <input
-                            data-testid="PriceInput"
-                            type="price"
-                            name="price"
-                            placeholder={this.state.price}
-                            value={this.state.price}
-                            onChange={this.handleChange}
-                            required
-                            style={{ width: "100%" }}
+                                data-testid="PriceInput"
+                                type="price"
+                                name="price"
+                                placeholder={this.state.price}
+                                value={this.state.price}
+                                onChange={this.handleChange}
+                                required
+                                style={{ width: "100%" }}
                             />
                         </Col>
                     </Row>
@@ -160,6 +160,6 @@ export class UpdateProduct extends Component {
                     </Row>
                 </Form>
             </Container>
-            )
-        }
+        )
     }
+}

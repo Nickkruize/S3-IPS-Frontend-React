@@ -9,17 +9,19 @@ export class Layout extends Component {
     document.body.style.backgroundColor = "#181818";
   }
 
-  render () {
+  render() {
     return (
       <>
+        <header>
+          <NavMenu />
+        </header>
         <main>
-        <NavMenu />
-        {this.props.children}
+          {this.props.children}
         </main>
         <footer>
           privacy blabla
         </footer>
-        </>
+      </>
     );
   }
 }

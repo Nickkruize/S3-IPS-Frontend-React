@@ -5,7 +5,7 @@ import ChatWindow from './ChatWindow';
 import ChatInput from './ChatInput';
 
 const Chat = () => {
-    const [ chat, setChat ] = useState([]);
+    const [chat, setChat] = useState([]);
     const [errors, setErrors] = useState([])
     const latestChat = useRef(null);
 
@@ -24,7 +24,7 @@ const Chat = () => {
                 connection.on('ReceiveMessage', message => {
                     const updatedChat = [...latestChat.current];
                     updatedChat.push(message);
-                
+
                     setChat(updatedChat);
                 });
             })
@@ -38,22 +38,22 @@ const Chat = () => {
         };
 
         try {
-            await  fetch('https://localhost:5001/chat/messages', { 
-                method: 'POST', 
+            await fetch('https://localhost:5001/chat/messages', {
+                method: 'POST',
                 body: JSON.stringify(chatMessage),
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization' : 'Bearer ' + sessionStorage.getItem("Token")
+                    'Authorization': 'Bearer ' + sessionStorage.getItem("Token")
                 }
             })
-            .then(response =>{
-                setErrors(response)
-                if (response.status === 401) {
-                    alert(errors.status + " Unauthorized, must be logged in to use this service")
-                }
-            })
+                .then(response => {
+                    setErrors(response)
+                    if (response.status === 401) {
+                        alert(errors.status + " Unauthorized, must be logged in to use this service")
+                    }
+                })
         }
-        catch(e) {
+        catch (e) {
             console.log('Sending message failed.', e);
             alert("Couldn't post message" + e)
         }
@@ -63,7 +63,7 @@ const Chat = () => {
         <div>
             <ChatInput sendMessage={sendMessage} />
             <hr />
-            <ChatWindow chat={chat}/>
+            <ChatWindow chat={chat} />
         </div>
     );
 };

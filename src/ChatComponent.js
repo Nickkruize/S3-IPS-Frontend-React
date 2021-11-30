@@ -11,6 +11,6 @@ export class ChatComponent extends Component {
     }
 
     render() {
-        return<Chat/>
- }
+        return <Chat />
+    }
 }

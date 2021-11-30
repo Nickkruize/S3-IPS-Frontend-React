@@ -36,105 +36,98 @@ export class Product extends Component {
                 this.props.history.push("/NoMatch");
             });
     }
-    
-    componentWillUnmount(){
+
+    componentWillUnmount() {
         console.log("Bye");
     }
-    
-    toUpdate(){
+
+    toUpdate() {
         this.props.history.push("/Product/Update/" + this.id);
     }
 
-    deleteProduct(){
+    deleteProduct() {
         const api = axios.create({
             baseURL: "https://localhost:5001/product"
         })
 
         api.delete('/' + this.id)
-        .then(res => {
-            console.log(res);
-            console.log("Product deleted");
-            alert("Product deleted");
-            this.props.history.push("/products");
-        }).catch(error =>{
-            console.error(error);
-            alert("Product deleted despite error");
-            this.setState({error : error});
-            this.props.history.push("/products");
-        })
+            .then(res => {
+                console.log(res);
+                console.log("Product deleted");
+                alert("Product deleted");
+                this.props.history.push("/products");
+            }).catch(error => {
+                console.error(error);
+                alert("Product deleted despite error");
+                this.setState({ error: error });
+                this.props.history.push("/products");
+            })
     }
 
     renderCategoryButtons() {
         let categories = this.state.product.categories;
         if (categories.length > 0) {
             let buttons = categories.map((item, index) => {
-                return(
-                <Link to={{ pathname: `/Category/${item.id}` }}><button key={index}>{item.name}</button></Link>)});
                 return (
+                    <Link to={{ pathname: `/Category/${item.id}` }}><button key={index}>{item.name}</button></Link>)
+            });
+            return (
                 <div className="cable-choose">
                     {buttons}
                 </div>
-                )
-            }
+            )
+        }
         else {
             return null
         }
     }
 
-    notYetImplemented(){
+    notYetImplemented() {
         return alert("not yet implemented")
     }
 
-    ifMorethanZeroCategories(){
-        if(this.state.categories.length > 0){
-            return <h2 style={{textAlign:"center"}}> Categories </h2>
+    ifMorethanZeroCategories() {
+        if (this.state.categories.length > 0) {
+            return <h2 style={{ textAlign: "center" }}> Categories </h2>
         }
     }
 
     render() {
         if (!this.state.isLoaded) {
-            return <div data-testid = "LoadingMessage">Loading..</div>
+            return <div data-testid="LoadingMessage">Loading..</div>
         }
-        else{
+        else {
             return (
-            <html>
-            <head>
-            <meta charset="utf-8"/>
-            <meta name="viewport" content="width=device-width, initial-scale=1"/>
-            <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet"></link>
-            </head>
+                <div className="container">
 
-<div className="container">
+                    <div className="left-column">
+                        <img className="active" src={this.state.product.imgUrl} alt="" />
+                    </div>
 
-    <div className="left-column">     
-      <img className="active" src={this.state.product.imgUrl} alt=""/>
-    </div>
-   
-   
-    <div className="right-column">
-      <div className="product-description">
-        <span>
-            <h2>{this.state.product.name}</h2>
-            </span>
-        <p style={{color:"white"}}>{this.state.product.description}</p>
-      </div>
-   
-      <div className="product-configuration">
-   
-        <div className="cable-config">
-          <span>Categories</span>
-          {this.renderCategoryButtons()}
-        </div>
-      </div>
 
-      <div className="product-price"> 
-        <span>€{this.state.product.price}</span>
-        <button className="cart-btn" onClick={this.notYetImplemented}>Add to cart</button>
-      </div>
-    </div>
-  </div>
-        </html>
-        )
+                    <div className="right-column">
+                        <div className="product-description">
+                            <span>
+                                <h2>{this.state.product.name}</h2>
+                            </span>
+                            <p style={{ color: "white" }}>{this.state.product.description}</p>
+                        </div>
+
+                        <div className="product-configuration">
+
+                            <div className="cable-config">
+                                <span>Categories</span>
+                                {this.renderCategoryButtons()}
+                            </div>
+                        </div>
+
+                        <div className="product-price">
+                            <span>€{this.state.product.price}</span>
+                            <button className="cart-btn" onClick={this.notYetImplemented}>Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
     }
-}
 }
