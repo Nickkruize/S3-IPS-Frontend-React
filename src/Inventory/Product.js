@@ -30,7 +30,7 @@ export default function Product(props) {
                 console.error(error);
                 setError(error);
                 setIsLoaded(true);
-                this.props.history.push("/NoMatch");
+                props.history.push("/NoMatch");
             });
     })
 

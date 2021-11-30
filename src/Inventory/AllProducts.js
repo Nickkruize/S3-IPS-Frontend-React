@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 import axios from 'axios';
 import '../css/inventory.css';
+import Loader from '../General Components/loader';
 
 
 export class AllProducts extends Component {
@@ -70,11 +71,13 @@ export class AllProducts extends Component {
 
         if (this.state.error != null) {
             return (
-                <p>{this.state.error.message}</p>
+                <div style={{ marginTop: "25%" }}>
+                    <h2>{this.state.error.message}</h2>
+                </div>
             )
         }
         if (!this.state.isLoaded) {
-            return <div data-testid="LoadingMessage"><p>Loading..</p></div>
+            return <Loader />
         }
 
         if (this.state.products == null) {

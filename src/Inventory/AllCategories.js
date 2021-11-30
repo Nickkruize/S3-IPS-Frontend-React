@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Link } from 'react-router-dom';
-import { Row, Col, Spinner } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import axios from 'axios';
 import '../css/inventory.css';
+import Loader from '../General Components/loader';
 
 
 export class AllCategories extends Component {
@@ -71,7 +72,7 @@ export class AllCategories extends Component {
     render() {
         if (!this.state.isLoaded) {
             return <div data-testid="LoadingMessage" style={{ textAlign: "center", marginTop: "25%" }}>
-                <Spinner animation="border" children={false} style={{ color: "green", width: '5rem', height: "5rem" }} />
+                <Loader/>
             </div>
         }
 
