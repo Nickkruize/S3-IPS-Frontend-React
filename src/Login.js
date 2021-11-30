@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Row, Form, Col, Button } from 'reactstrap';
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.css';
-import AuthContext from "./Context/AuthContext";
+import AuthContext, { AuthConsumer } from "./Context/AuthContext";
 import { decodeToken } from 'react-jwt';
 
 
@@ -25,13 +25,11 @@ export class Login extends Component {
     }
 
 
-    componentDidMount() {
-        const context = this.context;
-        if (context.username !== null) {
-            alert("Already logged in")
-            this.props.history.push("/")
-        }
+    alreadyLoggedIn() {
+        alert("already logged in");
+        this.props.history.goBack()
     }
+
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
@@ -58,19 +56,19 @@ export class Login extends Component {
                         alert("Logged in succesfully");
                         sessionStorage.setItem("Token", response.data.token);
                         context.logIn(this.DecodeToken(response.data.token));
-                        this.props.history.push("/");
                     }
                 })
                 .catch(error => {
                     console.log(error.response.data.errors)
                     this.setState({ loginErrors: error.response.data.errors });
-                });
-            event.preventDefault();
-            this.clearPasswordError();
+                }
+                );
         }
         catch (e) {
-            console.log(e);
+            console.log(e)
         }
+        event.preventDefault();
+        this.clearPasswordError();
     }
 
     DecodeToken(token) {
@@ -104,67 +102,80 @@ export class Login extends Component {
 
     render() {
         return (
-            <div>
-                <Row xs={1}>
-                    {this.CheckForErrors()}
-                </Row>
-                <Form onSubmit={this.handleSubmit}>
-                    <Row>
-                        <Col xs={4} />
-                        <Col xs={4} style={{ textAlign: "center" }}>
-                            <div ></div>
-                            <label data-testid="EmailLabel" id="EmailLabel" style={{ width: "100%" }}>Email</label>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={4} />
-                        <Col xs={4} style={{ textAlign: "center" }} >
-                            <input
-                                data-testid="EmailInput"
-                                type="email"
-                                name="email"
-                                placeholder="Email"
-                                value={this.state.email}
-                                onChange={this.handleChange}
-                                required
-                                style={{ width: "100%" }}
-                            />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={4} />
-                        <Col xs={4} style={{ textAlign: "center" }}>
-                            <label data-testid="PasswordLabel" id="PasswordLabel" style={{ width: "100%" }}>Password</label>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={4} />
-                        <Col xs={4} style={{ textAlign: "center" }} >
-                            <input
-                                data-testid="PasswordInput"
-                                id="PasswordInput"
-                                type="password"
-                                name="password"
-                                placeholder="Password"
-                                value={this.state.password}
-                                onChange={this.handleChange}
-                                required
-                                style={{ width: "100%" }}
-                            />
-                        </Col>
-                    </Row>
-                    <br />
-                    <Row>
-                        <Col xs={4} />
-                        <Col xs={2} style={{ textAlign: "center" }}>
-                            <Button data-testid="LoginButton" id="LoginButton" color="primary" size="lg" block type="submit">Login</Button>
-                        </Col>
-                        <Col xs={2} style={{ textAlign: "center" }}>
-                            <Button data-testid="RegisterButton" id="RegisterButton" color="primary" size="lg" onClick={this.toRegister}>Register</Button>
-                        </Col>
-                    </Row>
-                </Form>
-            </div>
-        );
-    }
+            <AuthConsumer>
+                {props => {
+                    const { isAuthenticated } = props;
+                    if (isAuthenticated === false) {
+                        return (
+                            <div>
+                                <Row xs={1}>
+                                    {this.CheckForErrors()}
+                                </Row>
+                                <Form onSubmit={this.handleSubmit}>
+                                    <Row>
+                                        <Col xs={4} />
+                                        <Col xs={4} style={{ textAlign: "center" }}>
+                                            <div ></div>
+                                            <label data-testid="EmailLabel" id="EmailLabel" style={{ width: "100%" }}>Email</label>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col xs={4} />
+                                        <Col xs={4} style={{ textAlign: "center" }} >
+                                            <input
+                                                data-testid="EmailInput"
+                                                type="email"
+                                                name="email"
+                                                placeholder="Email"
+                                                value={this.state.email}
+                                                onChange={this.handleChange}
+                                                required
+                                                style={{ width: "100%" }}
+                                            />
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col xs={4} />
+                                        <Col xs={4} style={{ textAlign: "center" }}>
+                                            <label data-testid="PasswordLabel" id="PasswordLabel" style={{ width: "100%" }}>Password</label>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col xs={4} />
+                                        <Col xs={4} style={{ textAlign: "center" }} >
+                                            <input
+                                                data-testid="PasswordInput"
+                                                id="PasswordInput"
+                                                type="password"
+                                                name="password"
+                                                placeholder="Password"
+                                                value={this.state.password}
+                                                onChange={this.handleChange}
+                                                required
+                                                style={{ width: "100%" }}
+                                            />
+                                        </Col>
+                                    </Row>
+                                    <br />
+                                    <Row>
+                                        <Col xs={4} />
+                                        <Col xs={2} style={{ textAlign: "center" }}>
+                                            <Button data-testid="LoginButton" id="LoginButton" color="primary" size="lg" block type="submit">Login</Button>
+                                        </Col>
+                                        <Col xs={2} style={{ textAlign: "center" }}>
+                                            <Button data-testid="RegisterButton" id="RegisterButton" color="primary" size="lg" onClick={this.toRegister}>Register</Button>
+                                        </Col>
+                                    </Row>
+                                </Form>
+                            </div>
+                        )
+                    }
+                    else {
+                        <div>
+                            {this.alreadyLoggedIn()}
+                        </div>
+                    }
+                }}
+                </AuthConsumer>)
+}
 }

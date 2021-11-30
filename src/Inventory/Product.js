@@ -1,75 +1,64 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../css/product.css'
+import { useState } from 'react';
+import CartContext from '../Context/CartContext';
+import { useContext } from 'react';
 
-export class Product extends Component {
-    static displayName = Product.name;
 
-    constructor(props) {
-        super(props);
-        this.deleteProduct = this.deleteProduct.bind(this);
-        this.toUpdate = this.toUpdate.bind(this);
-        this.id = 0;
-        this.state = {
-            product: null,
-            categories: [],
-            error: Error,
-            isLoaded: false,
-        }
-    }
+export default function Product(props) {
 
-    componentDidMount() {
+    const id = props.match.params.id;
+    const [product, setProduct] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [error, setError] = useState(null);
+    const {addToCart} = useContext(CartContext);
 
-        this.id = this.props.match.params.id;
 
+
+    useEffect(() => {
         const api = axios.create({
             baseURL: "https://localhost:5001/product"
         })
 
-        api.get('/' + this.id)
+        api.get('/' + id)
             .then(res => {
-                this.setState({ product: res.data, isLoaded: true })
+                setProduct(res.data);
+                setIsLoaded(true);
             }).catch(error => {
                 console.error(error);
-                this.setState({ error: error })
+                setError(error);
+                setIsLoaded(true);
                 this.props.history.push("/NoMatch");
             });
-    }
+    })
 
-    componentWillUnmount() {
-        console.log("Bye");
-    }
+    // function deleteProduct() {
+    //     const api = axios.create({
+    //         baseURL: "https://localhost:5001/product"
+    //     })
 
-    toUpdate() {
-        this.props.history.push("/Product/Update/" + this.id);
-    }
+    //     api.delete('/' + this.id)
+    //         .then(res => {
+    //             console.log(res);
+    //             console.log("Product deleted");
+    //             alert("Product deleted");
+    //             this.props.history.push("/products");
+    //         }).catch(error => {
+    //             console.error(error);
+    //             alert("Product deleted despite error");
+    //             this.setState({ error: error });
+    //             this.props.history.push("/products");
+    //         })
+    // }
 
-    deleteProduct() {
-        const api = axios.create({
-            baseURL: "https://localhost:5001/product"
-        })
-
-        api.delete('/' + this.id)
-            .then(res => {
-                console.log(res);
-                console.log("Product deleted");
-                alert("Product deleted");
-                this.props.history.push("/products");
-            }).catch(error => {
-                console.error(error);
-                alert("Product deleted despite error");
-                this.setState({ error: error });
-                this.props.history.push("/products");
-            })
-    }
-
-    renderCategoryButtons() {
-        let categories = this.state.product.categories;
+    function renderCategoryButtons() {
+        const categories = product.categories
         if (categories.length > 0) {
             let buttons = categories.map((item, index) => {
                 return (
-                    <Link to={{ pathname: `/Category/${item.id}` }}><button key={index}>{item.name}</button></Link>)
+                    <Link key={index} to={{ pathname: `/Category/${item.id}` }}><button>{item.name}</button></Link>)
             });
             return (
                 <div className="cable-choose">
@@ -82,52 +71,47 @@ export class Product extends Component {
         }
     }
 
-    notYetImplemented() {
-        return alert("not yet implemented")
+    if (isLoaded === false) {
+        return (
+            <div data-testid="LoadingMessage">Loading..</div>
+        )
     }
-
-    ifMorethanZeroCategories() {
-        if (this.state.categories.length > 0) {
-            return <h2 style={{ textAlign: "center" }}> Categories </h2>
-        }
+    if (error != null) {
+        return(
+            <div>Error(s)</div>
+        )
     }
+    else {
+        return (
+            <div className="container">
 
-    render() {
-        if (!this.state.isLoaded) {
-            return <div data-testid="LoadingMessage">Loading..</div>
-        }
-        else {
-            return (
-                <div className="container">
+                <div className="left-column">
+                    <img className="active" src={product.imgUrl} alt="" />
+                </div>
 
-                    <div className="left-column">
-                        <img className="active" src={this.state.product.imgUrl} alt="" />
+
+                <div className="right-column">
+                    <div className="product-description">
+                        <span>
+                            <h2>{product.name}</h2>
+                        </span>
+                        <p style={{ color: "white" }}>{product.description}</p>
                     </div>
 
+                    <div className="product-configuration">
 
-                    <div className="right-column">
-                        <div className="product-description">
-                            <span>
-                                <h2>{this.state.product.name}</h2>
-                            </span>
-                            <p style={{ color: "white" }}>{this.state.product.description}</p>
+                        <div className="cable-config" >
+                            <h2 style={{ textAlign: 'center' }}>Categories</h2>
+                                {renderCategoryButtons()}
                         </div>
+                    </div>
 
-                        <div className="product-configuration">
-
-                            <div className="cable-config">
-                                <span>Categories</span>
-                                {this.renderCategoryButtons()}
-                            </div>
-                        </div>
-
-                        <div className="product-price">
-                            <span>€{this.state.product.price}</span>
-                            <button className="cart-btn" onClick={this.notYetImplemented}>Add to cart</button>
-                        </div>
+                    <div className="product-price">
+                        <span>€{product.price}</span>
+                        <button className="cart-btn" onClick={() => addToCart(product)}>Add to cart</button>
                     </div>
                 </div>
-            )
-        }
+            </div>
+        )
     }
 }

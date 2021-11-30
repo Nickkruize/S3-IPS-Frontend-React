@@ -8,7 +8,7 @@ import { Home } from "./Home";
 import { AllProducts } from './Inventory/AllProducts';
 import { AllCategories } from "./Inventory/AllCategories";
 import { Category } from "./Inventory/Category";
-import { Product } from "./Inventory/Product";
+import  Product from "./Inventory/Product";
 import { UpdateProduct } from "./Inventory/UpdateProduct";
 import { CreateProduct } from "./Inventory/CreateProduct";
 
@@ -20,13 +20,16 @@ import {ChatComponent} from './Chat/ChatComponent';
 import { AuthProvider } from "./Context/AuthContext";
 
 import './css/App.css'
+import CartContext from "./Context/CartContext";
+import useCart from "./hooks/use-cart";
+import CartPage from "./Inventory/Cart/CartPage";
 
 
-export default class App extends React.Component {
+export default function App(){
 
-  render() {
     return (
       <AuthProvider>
+        <CartContext.Provider value={useCart([])}>
         <Router>
           <Layout>
             <Switch>
@@ -42,13 +45,14 @@ export default class App extends React.Component {
               <Route path="/Register" exact component={Register} />
               <Route path="/Login" exact component={Login} />
               <Route path="/Chat" exact component={ChatComponent} />
+              <Route path="/Cart" exact component={CartPage}/>
 
               <Route path="/NoMatch" component={NoMatch} />
               <Route component={NoMatch} />
             </Switch>
           </Layout>
         </Router>
+        </CartContext.Provider>
       </AuthProvider>
     );
   }
-}

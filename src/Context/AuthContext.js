@@ -21,7 +21,7 @@ export class AuthProvider extends Component {
     componentDidMount() {
         if (sessionStorage.getItem("Token") != null) {
             const username = decodeToken(sessionStorage.getItem("Token")).unique_name;
-            this.setState({ username: username })
+            this.setState({ username: username, isAuthenticated : true })
         }
     }
     logIn(username) {
@@ -36,7 +36,6 @@ export class AuthProvider extends Component {
     render() {
         const { username, isAuthenticated } = this.state;
         const { logIn, logOut } = this;
-        console.log(username)
         return (
             <AuthContext.Provider value={{
                 username,

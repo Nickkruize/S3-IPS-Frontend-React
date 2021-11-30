@@ -1,39 +1,32 @@
-import React, { Component } from 'react';
+import React, { useContext, useState } from 'react';
 import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './css/navigation.css'
 import { AuthConsumer } from './Context/AuthContext';
+import CartContext from './Context/CartContext';
 
-export class NavMenu extends Component {
-  static displayName = NavMenu.name;
+export default function NavMenu()  {
+  const {cart} = useContext(CartContext);
 
-  constructor(props) {
-    super(props);
+  const [collapsed, setcollapsed] = useState(true);
 
-    this.toggleNavbar = this.toggleNavbar.bind(this);
-    this.state = {
-      collapsed: true,
-    };
+  function toggleNavbar() {
+    setcollapsed(!collapsed)
   }
 
-  toggleNavbar() {
-    this.setState({
-      collapsed: !this.state.collapsed
-    });
-  }
-
-  CurrentUser() {
+  function CurrentUser() {
     return (
       <AuthConsumer>
         {props => {
           const { username, logOut } = props;
           if (username !== null) {
             return (
-              <NavItem>
-                <NavLink className="text-dark" to="/">{username}
-                  <button button tag={Link} className="text-dark" onClick={logOut}>Logout</button>
+              <li>
+                <NavLink tag={Link} className="text-dark" onClick={logOut} to="/">
+                  {username} Logout
                 </NavLink>
-              </NavItem>
+              </li>
+
             )
           }
           else {
@@ -47,30 +40,31 @@ export class NavMenu extends Component {
       </AuthConsumer>)
   }
 
-  render() {
     return (
       <Navbar style={{ backgroundColor: "LightBlue" }} className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
         <Container>
           <NavbarBrand tag={Link} to="/">My Webshop</NavbarBrand>
-          <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-          <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
+          <NavbarToggler onClick={() => toggleNavbar()} className="mr-2" />
+          <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={collapsed} navbar>
             <ul className="navbar-nav flex-grow">
-              <NavItem>
+              <li>
                 <NavLink tag={Link} className="text-dark" to="/Products">Products</NavLink>
-              </NavItem>
-              <NavItem>
+              </li>
+              <li>
                 <NavLink tag={Link} className="text-dark" to="/Categories">Categories</NavLink>
-              </NavItem>
-              <NavItem>
+              </li>
+              <li>
                 <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
-              </NavItem>
-              <NavItem>
-                {this.CurrentUser()}
-              </NavItem>
+              </li>
+
+              <li>
+                <Link to='/cart'>Cart: </Link> ({cart.length})
+              </li>
+
+              {CurrentUser()}
             </ul>
           </Collapse>
         </Container>
       </Navbar>
     );
-  }
 }
