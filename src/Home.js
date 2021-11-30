@@ -1,13 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './css/index.css'
 
 
-export class Home extends Component {
-  static displayName = Home.name;
+export default function Home() {
 
-
-  render() {
     return (
       <div>
         <ul>
@@ -19,4 +16,3 @@ export class Home extends Component {
       </div>
     );
   }
-}

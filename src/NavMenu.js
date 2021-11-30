@@ -6,8 +6,8 @@ import { AuthConsumer } from './Context/AuthContext';
 import CartContext from './Context/CartContext';
 
 export default function NavMenu()  {
+  
   const {cart} = useContext(CartContext);
-
   const [collapsed, setcollapsed] = useState(true);
 
   function toggleNavbar() {

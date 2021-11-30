@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React from 'react';
 
-import { Layout } from "./Layout";
-import { NoMatch } from "./NoMatch";
-import { Home } from "./Home";
+import  Layout from "./Layout";
+import  NoMatch from "./NoMatch";
+import  Home from "./Home";
 
 import { AllProducts } from './Inventory/AllProducts';
 import { AllCategories } from "./Inventory/AllCategories";
@@ -12,17 +12,18 @@ import  Product from "./Inventory/Product";
 import { UpdateProduct } from "./Inventory/UpdateProduct";
 import { CreateProduct } from "./Inventory/CreateProduct";
 
+import CartContext from "./Context/CartContext";
+import useCart from "./hooks/use-cart";
+import CartPage from "./Inventory/Cart/CartPage";
+
 import { Register } from "./Register";
 import { Login } from "./Login";
 
-import {ChatComponent} from './Chat/ChatComponent';
+import Chat from './Chat/Chat';
 
 import { AuthProvider } from "./Context/AuthContext";
 
 import './css/App.css'
-import CartContext from "./Context/CartContext";
-import useCart from "./hooks/use-cart";
-import CartPage from "./Inventory/Cart/CartPage";
 
 
 export default function App(){
@@ -44,7 +45,7 @@ export default function App(){
               <Route path="/Categories" exact component={AllCategories} />
               <Route path="/Register" exact component={Register} />
               <Route path="/Login" exact component={Login} />
-              <Route path="/Chat" exact component={ChatComponent} />
+              <Route path="/Chat" exact component={Chat} />
               <Route path="/Cart" exact component={CartPage}/>
 
               <Route path="/NoMatch" component={NoMatch} />

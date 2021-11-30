@@ -5,53 +5,37 @@ import '../css/product.css'
 import { useState } from 'react';
 import CartContext from '../Context/CartContext';
 import { useContext } from 'react';
+import Loader from '../General Components/loader';
 
 
 export default function Product(props) {
 
-    const id = props.match.params.id;
     const [product, setProduct] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
     const {addToCart} = useContext(CartContext);
 
 
-
     useEffect(() => {
+        const id = props.match.params.id;
         const api = axios.create({
-            baseURL: "https://localhost:5001/product"
+            baseURL: "https://localhost:5001/product/" + id
         })
 
-        api.get('/' + id)
-            .then(res => {
-                setProduct(res.data);
-                setIsLoaded(true);
-            }).catch(error => {
-                console.error(error);
-                setError(error);
-                setIsLoaded(true);
-                props.history.push("/NoMatch");
-            });
-    })
+        api.get()
+        .then(res => {
+            setProduct(res.data);
+            setIsLoaded(true);
+        }).catch(error => {
+            console.error(error);
+            setError(error);
+            setIsLoaded(true);
+            props.history.push("/NoMatch");
+        });
 
-    // function deleteProduct() {
-    //     const api = axios.create({
-    //         baseURL: "https://localhost:5001/product"
-    //     })
+        return () => {};
+    },[props.history, props.match.params.id]);
 
-    //     api.delete('/' + this.id)
-    //         .then(res => {
-    //             console.log(res);
-    //             console.log("Product deleted");
-    //             alert("Product deleted");
-    //             this.props.history.push("/products");
-    //         }).catch(error => {
-    //             console.error(error);
-    //             alert("Product deleted despite error");
-    //             this.setState({ error: error });
-    //             this.props.history.push("/products");
-    //         })
-    // }
 
     function renderCategoryButtons() {
         const categories = product.categories
@@ -73,7 +57,7 @@ export default function Product(props) {
 
     if (isLoaded === false) {
         return (
-            <div data-testid="LoadingMessage">Loading..</div>
+            <div data-testid="LoadingMessage"><Loader/></div>
         )
     }
     if (error != null) {
