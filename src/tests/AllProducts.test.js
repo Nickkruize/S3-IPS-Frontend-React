@@ -1,6 +1,7 @@
 import React from "react";
-import { AllProducts } from '../AllProducts';
+import { AllProducts } from '../Inventory/AllProducts';
 import { shallow } from "enzyme";
+import {setupTests} from '../setupTests';
 
 
 const ProductList =

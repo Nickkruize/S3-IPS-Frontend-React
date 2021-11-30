@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './AccessDenied.css';
+import '.css/AccessDenied.css';
 import { Container } from 'reactstrap';
 
 export class AccessDenied extends Component {

@@ -1,5 +1,4 @@
 import React from 'react';
-import './AccessDenied.css'
 
 const Message = (props) => (
     <div style={{ background: "white", borderRadius: '5px', padding: '0 10px', width: "30%", marginLeft: "35%" }}>

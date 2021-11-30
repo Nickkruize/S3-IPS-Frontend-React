@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Row, Form, Col, Button } from 'reactstrap';
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.css';
-import './inventory.css'
+import '../css/inventory.css';
 
 export class CreateProduct extends Component {
     static displayName = CreateProduct.name;

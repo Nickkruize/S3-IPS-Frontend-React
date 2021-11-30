@@ -1,20 +1,25 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import React from 'react'
-import './App.css';
-import { AllProducts } from './AllProducts';
-import { Product } from "./Product";
+import React from 'react';
+
 import { Layout } from "./Layout";
-import { Home } from "./Home";
 import { NoMatch } from "./NoMatch";
-import { UpdateProduct } from "./UpdateProduct";
-import { CreateProduct } from "./CreateProduct";
+import { Home } from "./Home";
+
+import { AllProducts } from './Inventory/AllProducts';
+import { AllCategories } from "./Inventory/AllCategories";
+import { Category } from "./Inventory/Category";
+import { Product } from "./Inventory/Product";
+import { UpdateProduct } from "./Inventory/UpdateProduct";
+import { CreateProduct } from "./Inventory/CreateProduct";
+
 import { Register } from "./Register";
-import { Category } from "./Category";
-import { AllCategories } from "./AllCategories";
 import { Login } from "./Login";
-import { ChatComponent } from "./ChatComponent"
-import { TestBearer } from "./TestBearer";
+
+import {ChatComponent} from './Chat/ChatComponent';
+
 import { AuthProvider } from "./Context/AuthContext";
+
+import './css/App.css'
 
 
 export default class App extends React.Component {
@@ -37,7 +42,6 @@ export default class App extends React.Component {
               <Route path="/Register" exact component={Register} />
               <Route path="/Login" exact component={Login} />
               <Route path="/Chat" exact component={ChatComponent} />
-              <Route path="/Test" exact component={TestBearer} />
 
               <Route path="/NoMatch" component={NoMatch} />
               <Route component={NoMatch} />

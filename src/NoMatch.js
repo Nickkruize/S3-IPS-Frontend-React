@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './AccessDenied.css';
+import './css/AccessDenied.css';
 
 export class NoMatch extends Component {
 

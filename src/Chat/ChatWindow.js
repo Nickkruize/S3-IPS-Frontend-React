@@ -1,6 +1,5 @@
 import React from 'react';
 import Message from './Message';
-import './AccessDenied.css'
 
 const ChatWindow = (props) => {
     const chat = props.chat

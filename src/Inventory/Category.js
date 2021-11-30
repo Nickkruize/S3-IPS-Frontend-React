@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Row, Col } from 'reactstrap';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './inventory.css';
+import '../css/inventory.css';
 
 export class Category extends Component {
     static displayName = Category.name;

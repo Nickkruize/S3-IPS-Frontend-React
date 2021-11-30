@@ -1,6 +1,7 @@
 import { Layout } from '../Layout';
 import { NavMenu } from '../NavMenu';
 import { shallow } from "enzyme";
+import {setupTests} from '../setupTests';
 import App from '../App';
 
 

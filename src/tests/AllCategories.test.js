@@ -1,6 +1,7 @@
 import React from "react";
-import { AllCategories } from '../AllCategories';
+import { AllCategories } from '../Inventory/AllCategories';
 import { shallow } from "enzyme";
+import {setupTests} from '../setupTests';
 
 
 const CategoryList =
@@ -49,7 +50,7 @@ describe("rendering of all categories", () => {
     expect(wrapper.state("isLoaded")).toEqual(true);
 
     expect(wrapper.find('[data-testid="NoCategoriesFoundMessage"]').length).toEqual(1);
-    expect(wrapper.find('[data-testid="NoCategoriesFoundMessage"]').text()).toEqual("No products found");
+    expect(wrapper.find('[data-testid="NoCategoriesFoundMessage"]').text()).toEqual("No categories found");
     expect(wrapper.find('[data-testid="AllCategoriesDiv"]').length).toEqual(0);
     expect(wrapper.find('[data-testid=1]').length).toEqual(0);
   })

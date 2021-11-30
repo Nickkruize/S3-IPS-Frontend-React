@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Link } from 'react-router-dom';
 import { Row, Col, Spinner } from 'reactstrap';
 import axios from 'axios';
-import './inventory.css';
+import '../css/inventory.css';
 
 
 export class AllCategories extends Component {

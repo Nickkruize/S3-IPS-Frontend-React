@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './AccessDenied.css'
 
 const ChatInput = (props) => {
     const [user, setUser] = useState('');

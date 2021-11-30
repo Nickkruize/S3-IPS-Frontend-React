@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './css/product.css'
+import '../css/product.css'
 
 export class Product extends Component {
     static displayName = Product.name;
