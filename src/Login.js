@@ -171,8 +171,9 @@ export class Login extends Component {
                         )
                     }
                     else {
+                        alert("already logged in");
                         <div>
-                            {this.alreadyLoggedIn()}
+                           {this.props.history.goBack()}
                         </div>
                     }
                 }}
