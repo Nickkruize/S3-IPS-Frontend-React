@@ -43,14 +43,15 @@ export class Login extends Component {
         try {
             axios
                 .post(
-                    "https://localhost:5001/api/AuthManagement/Login",
+                    "/api/AuthManagement/Login",
                     {
                         email: email,
                         password: password
                     },
-                    { withCredentials: false }
+                    { withCredentials: true }
                 )
                 .then(response => {
+                    debugger;
                     console.log(response.data);
                     if (response.data.succes) {
                         alert("Logged in succesfully");
@@ -76,7 +77,6 @@ export class Login extends Component {
         const username = myDecodedToken.unique_name;
         return username;
     }
-
     CheckForErrors() {
         if (this.state.loginErrors != null) {
             return (
@@ -171,7 +171,6 @@ export class Login extends Component {
                         )
                     }
                     else {
-                        alert("already logged in");
                         <div>
                            {this.props.history.goBack()}
                         </div>
