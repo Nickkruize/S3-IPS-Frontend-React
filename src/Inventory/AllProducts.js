@@ -36,15 +36,13 @@ export class AllProducts extends Component {
             })
             .catch(error => {
                 if (error.response) {
-                    this.setState({ response: error.response });
-                    console.log(error.response)
+                    this.setState({ response: error.response, isLoaded : true });
                     if (error.response.status === 404) {
                         this.props.history.push("/NoMatch");
                     }
                 }
                 else {
-                    this.setState({ error: error })
-                    console.log(error);
+                    this.setState({ error: error, isLoaded : true })
                 }
             });
     }
@@ -64,7 +62,7 @@ export class AllProducts extends Component {
                     </Col>
                 ))}
             </Row>
-        )
+        );
     }
 
     render() {

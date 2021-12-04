@@ -29,7 +29,7 @@ const ProductList =
 describe("rendering of all products", () => {
 
   let wrapper;
-  beforeEach(() => {
+  beforeEach(async() => {
     wrapper = shallow(<AllProducts />);
   });
 
@@ -38,8 +38,8 @@ describe("rendering of all products", () => {
       expect(wrapper.state("products")).toEqual(null);
 
 
-      wrapper.setState({ products: ProductList })
-      wrapper.setState({ isLoaded: true })
+      await wrapper.setState({ products: ProductList })
+      await wrapper.setState({ isLoaded: true })
 
       expect(wrapper.state("products")).toEqual(ProductList);
       expect(wrapper.state("isLoaded")).toEqual(true);
@@ -55,7 +55,7 @@ describe("rendering of all products", () => {
   });
 
   it("renders an no products found message if no productdata is supplied", async () => {
-    wrapper.setState({ isLoaded: true })
+    await wrapper.setState({ isLoaded: true })
 
     try {
       expect(wrapper.state("products")).toEqual(null);

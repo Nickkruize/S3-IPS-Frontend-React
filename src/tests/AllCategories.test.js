@@ -27,7 +27,7 @@ describe("rendering of all categories", () => {
     wrapper = shallow(<AllCategories />);
   });
 
-  it("renders the supplied categorylist correctly", () => {
+  it("renders the supplied categorylist correctly", async() => {
     expect(wrapper.state("categories")).toEqual(null);
 
     wrapper.setState({ categories: CategoryList })
@@ -43,7 +43,7 @@ describe("rendering of all categories", () => {
     expect(wrapper.find('[data-testid=4]').length).toEqual(0);
   });
 
-  it("renders an no categories found message if no categorydata is supplied", () => {
+  it("renders an no categories found message if no categorydata is supplied", async() => {
     wrapper.setState({ isLoaded: true })
 
     expect(wrapper.state("categories")).toEqual(null);
@@ -55,7 +55,7 @@ describe("rendering of all categories", () => {
     expect(wrapper.find('[data-testid=1]').length).toEqual(0);
   })
 
-  it("renders an loading message when no data has been entered yet and the api call hasn't completed", () => {
+  it("renders an loading message when no data has been entered yet and the api call hasn't completed", async() => {
     expect(wrapper.state("categories")).toEqual(null);
     expect(wrapper.state("isLoaded")).toEqual(false);
 
