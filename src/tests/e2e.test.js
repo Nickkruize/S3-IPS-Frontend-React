@@ -1,13 +1,13 @@
 import puppeteer from "puppeteer";
 
-jest.setTimeout(30000);
+jest.setTimeout(60000);
 
 describe("App.js", () => {
   let browser;
   let page;
 
   beforeAll(async () => {
-    browser = await puppeteer.launch({headless : true});
+    browser = await puppeteer.launch({headless : false});
     page = await browser.newPage();
     page.setDefaultNavigationTimeout(0);
   });
@@ -52,7 +52,10 @@ describe("App.js", () => {
   });
 
   it("navigates to multiple pages", async () => {
-    const urls = ["http://localhost:3000/chat", "http://localhost:3000/products", "http://localhost:3000/categories", "http://localhost:3000/login", "http://localhost:3000/register"]
+    const urls = ["http://localhost:3000/chat", "http://localhost:3000/products", "http://localhost:3000/categories",
+                  "http://localhost:3000/login", "http://localhost:3000/register", "http://localhost:3000/cart",
+                  "http://localhost:3000/product/1", "http://localhost:3000/category/1"]
+
     await page.goto("http://localhost:3000");
     for(let i = 0; i < urls.length; i++){
       const url = urls[i];
