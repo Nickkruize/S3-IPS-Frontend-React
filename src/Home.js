@@ -8,10 +8,12 @@ export default function Home() {
     return (
       <div>
         <ul>
-          <li><Link to="/Products">View All Products</Link></li>
-          <li><Link to="/Categories">View All Categories</Link></li>
-          <li><Link to="/ProductCreate">Add new product</Link></li>
-          <li><Link to="/Chat">Chat</Link></li>
+          <li id="productlink"><Link to="/Products">View All Products</Link></li>
+          <li id="categorylink"><Link to="/Categories">View All Categories</Link></li>
+          <li id="productcreatelink"><Link to="/ProductCreate">Add New Product</Link></li>
+          <li id="chatlink"><Link to="/Chat">Chat</Link></li>
+
+          <Link id="about-page-link" to="/About">About Us</Link>
         </ul>
       </div>
     );

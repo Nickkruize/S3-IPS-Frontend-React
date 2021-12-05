@@ -24,6 +24,7 @@ import Chat from './Chat/Chat';
 import { AuthProvider } from "./Context/AuthContext";
 
 import './css/App.css'
+import about from "./about";
 
 
 export default function App(){
@@ -47,6 +48,7 @@ export default function App(){
               <Route path="/Login" exact component={Login} />
               <Route path="/Chat" exact component={Chat} />
               <Route path="/Cart" exact component={CartPage}/>
+              <Route path="/About" exact component={about}/>
 
               <Route path="/NoMatch" component={NoMatch} />
               <Route component={NoMatch} />
