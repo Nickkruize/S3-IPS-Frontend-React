@@ -1,12 +1,15 @@
 import puppeteer from "puppeteer";
 
+jest.setTimeout(30000);
+
 describe("App.js", () => {
   let browser;
   let page;
 
   beforeAll(async () => {
-    browser = await puppeteer.launch({headless : false, slowMo: 50});
+    browser = await puppeteer.launch({headless : true});
     page = await browser.newPage();
+    page.setDefaultNavigationTimeout(0);
   });
 
   it("contains the link to products", async () => {
@@ -48,5 +51,14 @@ describe("App.js", () => {
     expect(text2).toContain("This is the About us page");
   });
 
-  afterAll(() => browser.close());
-});
+  it("navigates to multiple pages", async () => {
+    const urls = ["http://localhost:3000/chat", "http://localhost:3000/products", "http://localhost:3000/categories", "http://localhost:3000/login", "http://localhost:3000/register"]
+    await page.goto("http://localhost:3000");
+    for(let i = 0; i < urls.length; i++){
+      const url = urls[i];
+      await page.goto(`${url}`, { waitUntil: 'networkidle0' });
+    }
+  });
+
+  afterAll(async () => await browser.close())
+})
