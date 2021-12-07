@@ -57,6 +57,7 @@ export class Login extends Component {
                         alert("Logged in succesfully");
                         sessionStorage.setItem("Token", response.data.token);
                         context.logIn(this.DecodeToken(response.data.token));
+                        this.props.history.push("/");
                     }
                 })
                 .catch(error => {
@@ -80,7 +81,7 @@ export class Login extends Component {
     CheckForErrors() {
         if (this.state.loginErrors != null) {
             return (
-                <div>
+                <div id="LoginErrors">
                     {this.state.loginErrors.map((error, index) => (
                         <h2 key={index} style={{ color: 'red', textAlign: "center" }}>{error}</h2>
                     ))}
@@ -111,7 +112,7 @@ export class Login extends Component {
                                 <Row xs={1}>
                                     {this.CheckForErrors()}
                                 </Row>
-                                <Form onSubmit={this.handleSubmit}>
+                                <Form id="formheader" onSubmit={this.handleSubmit}>
                                     <Row>
                                         <Col xs={4} />
                                         <Col xs={4} style={{ textAlign: "center" }}>
@@ -124,6 +125,7 @@ export class Login extends Component {
                                         <Col xs={4} style={{ textAlign: "center" }} >
                                             <input
                                                 data-testid="EmailInput"
+                                                id = "EmailInput"
                                                 type="email"
                                                 name="email"
                                                 placeholder="Email"

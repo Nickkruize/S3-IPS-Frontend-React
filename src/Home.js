@@ -6,7 +6,7 @@ import './css/index.css'
 export default function Home() {
 
     return (
-      <div>
+      <div id="homepagediv">
         <ul>
           <li id="productlink"><Link to="/Products">View All Products</Link></li>
           <li id="categorylink"><Link to="/Categories">View All Categories</Link></li>
