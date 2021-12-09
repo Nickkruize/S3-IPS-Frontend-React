@@ -7,7 +7,7 @@ describe("App.js", () => {
     let page;
 
     beforeAll(async () => {
-        browser = await puppeteer.launch({ headless: false});
+        browser = await puppeteer.launch({ headless: false, args: ['--no-sandbox', '--disable-setuid-sandbox']});
         page = await browser.newPage();
         page.setDefaultNavigationTimeout(0);
     });
@@ -31,8 +31,6 @@ describe("App.js", () => {
     });
 
     it("shows message if authentication succeeds", async () => {
-
-
         await page.goto("http://localhost:3000/login");
         await page.waitForSelector("#formheader");
 

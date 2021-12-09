@@ -7,7 +7,7 @@ describe("App.js", () => {
   let page;
 
   beforeAll(async () => {
-    browser = await puppeteer.launch({headless : true});
+    browser = await puppeteer.launch({ headless: false, args: ['--no-sandbox', '--disable-setuid-sandbox']});
     page = await browser.newPage();
     page.setDefaultNavigationTimeout(0);
   });
