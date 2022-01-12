@@ -13,7 +13,7 @@ export default function Home() {
           <li id="productcreatelink"><Link to="/ProductCreate">Add New Product</Link></li>
           <li id="chatlink"><Link to="/Chat">Chat</Link></li>
 
-          <Link id="about-page-link" to="/About">About Us</Link>
+          <li id="about-page-link"><Link to="/About">About Us</Link></li>
         </ul>
       </div>
     );
