@@ -79,7 +79,7 @@ export default function Product(props) {
                         <span>
                             <h2>{product.name}</h2>
                         </span>
-                        <p style={{ color: "white" }}>{product.description}</p>
+                        <p style={{ color: "black" }}>{product.description}</p>
                     </div>
 
                     <div className="product-configuration">

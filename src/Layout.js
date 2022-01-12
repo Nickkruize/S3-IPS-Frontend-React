@@ -5,7 +5,7 @@ import './css/index.css'
 export default function Layout(props){
 
   useEffect(() => {
-    document.body.style.backgroundColor = "#181818";
+    document.body.style.backgroundColor = "white";
     return () => {}
   }, [])
 

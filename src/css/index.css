@@ -1,6 +1,6 @@
 html {
     --primary-color: #fff;
-    --secondary-color: #282c34;
+    --secondary-color: #bbb;
   }
   
   /* Redefine our color variables if the data-theme attr
@@ -8,7 +8,7 @@ html {
   */
   
   html[data-theme="dark"] {
-    --primary-color: #282c34;
+    --primary-color: #bbb;
     --secondary-color: #fff;
   }
   
@@ -61,6 +61,6 @@ html {
   }
   
   .dark-mode {
-    background-color: black;
+    background-color: white;
     color: white;
   }
