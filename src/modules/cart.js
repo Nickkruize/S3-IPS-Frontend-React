@@ -10,8 +10,11 @@ export function getLocalStorageCart(){
     return JSON.parse(data);
 }
 
-export function removeFromCart(product) {
-    
+export function removeFromLocalStorage(product) {
+    const data = localStorage.getItem("cart");
+    if (data.includes(product)) {
+        alert("removed product")
+    }
 }
 
 export function  clearCart() {

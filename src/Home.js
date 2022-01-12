@@ -15,6 +15,10 @@ export default function Home() {
 
           <li id="about-page-link"><Link to="/About">About Us</Link></li>
         </ul>
+
+        <div style={{ textAlign: "center" }}>
+          <img src="https://s.s-bol.com/nl/upload/images/ps/banners/campagne/2022/Sale-solden-jan/31512-Sale_solden-hoofdmiddelen-fase2-NL_mhp-header.jpg"/>
+        </div>
       </div>
     );
   }

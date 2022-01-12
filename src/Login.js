@@ -108,7 +108,7 @@ export class Login extends Component {
                     const { isAuthenticated } = props;
                     if (isAuthenticated === false) {
                         return (
-                            <div>
+                            <div style={{ marginTop: "20%" }}>
                                 <Row xs={1}>
                                     {this.CheckForErrors()}
                                 </Row>

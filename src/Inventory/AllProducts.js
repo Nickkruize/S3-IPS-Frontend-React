@@ -58,7 +58,10 @@ export class AllProducts extends Component {
                 {this.state.products.map((product, index) => (
                     <Col key={index} data-testid={product.id} xs={3} style={{ textAlign: "center" }}>
                         <Link to={{ pathname: `/Product/${product.id}` }}><img style={{ width: "100%" }} src={product.imgUrl} alt="Not Found" /> </Link>
-                        <p>{product.name}</p>
+                        <Row>
+                        <Col>{product.name}</Col>
+                        <Col>€{product.price}</Col>
+                        </Row>
                     </Col>
                 ))}
             </Row>

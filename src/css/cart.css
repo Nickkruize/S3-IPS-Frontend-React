@@ -90,6 +90,7 @@
   overflow: hidden;
   text-align: center;
   width: 35px;
+  margin-right: 30%;
 }
 
 
@@ -105,7 +106,7 @@
 
 .cart_delete  {
   display: block;
-  margin-right: -12px;
+  margin-left: 90%;
   overflow: hidden;
 }
 

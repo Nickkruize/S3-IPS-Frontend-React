@@ -14,6 +14,7 @@ export default function CartPage(){
 
 
     function listCartItems(){
+        console.log(cart)
         if (cart.length > 0) {
             return (cart.map((item, index) =>{
                 return(
@@ -23,6 +24,18 @@ export default function CartPage(){
         }
     }
 
+    function getTotalPrice(){
+        let totalprice = 0;
+        (cart.map((item) =>{
+            totalprice = totalprice + (item.price * item.qty);
+            return(totalprice.toFixed(2))
+        }))
+        return(totalprice)
+    }
+
+    function notImplemented(){
+        alert("Checkout not yet implemented")
+    }
     return(
         <section id="cart_items">
        	<div class="cartcontainer">
@@ -43,6 +56,12 @@ export default function CartPage(){
 					</tbody>
 				</table>
 			</div>
+            </div>
+            <div>
+                <p style={{marginRight : "5%", textAlign:"right", fontSize: "24px"}}>Total price: €{getTotalPrice()}</p>
+            </div>
+            <div style={{textAlign:"right"}}>
+            <button style={{marginRight : "5%"}} class="btn btn-primary" onClick={() => notImplemented()}>To Checkout</button>
             </div>
             </section>
     )

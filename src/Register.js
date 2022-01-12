@@ -62,7 +62,7 @@ export class Register extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{ marginTop: "15%" }}>
                 <Row xs={1}>
                     {this.CheckForErrors()}
                 </Row>
