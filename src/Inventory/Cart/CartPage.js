@@ -30,7 +30,7 @@ export default function CartPage(){
             totalprice = totalprice + (item.price * item.qty);
             return(totalprice.toFixed(2))
         }))
-        return(totalprice)
+        return(totalprice.toFixed(2))
     }
 
     function notImplemented(){
