@@ -55,6 +55,11 @@ export default function Product(props) {
         }
     }
 
+    function addProduct(product){
+        addToCart(product);
+        alert("Product added to cart");
+    }
+
     if (isLoaded === false) {
         return (
             <div data-testid="LoadingMessage"><Loader/></div>
@@ -92,7 +97,7 @@ export default function Product(props) {
 
                     <div className="product-price">
                         <span>€{product.price}</span>
-                        <button className="cart-btn" onClick={() => addToCart(product)}>Add to cart</button>
+                        <button className="cart-btn" onClick={() => addProduct(product)}>Add to cart</button>
                     </div>
                 </div>
             </div>
