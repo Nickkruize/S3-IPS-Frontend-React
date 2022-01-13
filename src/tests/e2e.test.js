@@ -45,7 +45,7 @@ describe("App.js", () => {
     await page.waitForSelector("#about-page-link");
     const text = await page.$eval("#about-page-link", (e) => e.textContent);
     expect(text).toContain("About Us");
-    await page.click("#about-page-link");
+    await page.click("#about-page-link2");
     await page.waitForSelector("#AboutUs");
     const text2 = await page.$eval("#AboutUs", (e) => e.textContent);
     expect(text2).toContain("This is the About us page");

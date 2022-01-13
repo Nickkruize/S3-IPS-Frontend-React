@@ -58,7 +58,7 @@ export default function NavMenu()  {
               </li>
 
               <li>
-                <Link to='/cart'>Cart: </Link> ({cart.length})
+                <Link style={{ color: "black"}} to='/cart'>Cart: </Link> ({cart.length})
               </li>
 
               {CurrentUser()}
